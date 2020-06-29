@@ -1,0 +1,14 @@
+{
+    "ADC" : {
+        "description": "Add with carry",
+        "html": "<html><head><link rel='stylesheet' href='arm.css'></head><body><h1>ADC</h1><p>Add with carry.</p><div><h2>Syntax</h2><div><pre>ADC <em><code>Wd</code></em>, <em><code>Wn</code></em>, <em><code>Wm</code></em> ; 32-bit general registers</pre><pre>ADC <em><code>Xd</code></em>, <em><code>Xn</code></em>, <em><code>Xm</code></em> ; 64-bit general registers</pre><div><dl><dt> <em><code><em><code>Wd</code></em></code></em></dt><dd><div><p>Is the 32-bit name of the general-purpose destination register, in the range 0 to 31.</p></div></dd><dt> <em><code><em><code>Wn</code></em></code></em></dt><dd><div><p>Is the 32-bit name of the first general-purpose source register, in the range 0 to 31.</p></div></dd><dt> <em><code><em><code>Wm</code></em></code></em></dt><dd><div><p>Is the 32-bit name of the second general-purpose source register, in the range 0 to 31.</p></div></dd><dt> <em><code><em><code>Xd</code></em></code></em></dt><dd><div><p>Is the 64-bit name of the general-purpose destination register, in the range 0 to 31.</p></div></dd><dt> <em><code><em><code>Xn</code></em></code></em></dt><dd><div><p>Is the 64-bit name of the first general-purpose source register, in the range 0 to 31.</p></div></dd><dt> <em><code><em><code>Xm</code></em></code></em></dt><dd><div><p>Is the 64-bit name of the second general-purpose source register, in the range 0 to 31.</p></div></dd></dl></div></div></div></body></html>"
+    },
+    "ADCS" : {
+        "description": "Add with carry, setting the condition flags",
+        "html": ""
+    },
+    "B.cond" : {
+        "description": "Branch conditionally to a label at a PC-relative offset, with a hint that this is not a subroutine call or return",
+        "html": ""
+    }
+}
