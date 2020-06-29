@@ -4,6 +4,8 @@ body {
     font-style: normal;
     font-weight: 400;
     letter-spacing: .5px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 h1,
@@ -22,7 +24,8 @@ h1 {
     margin: .5em 0;
 }
 
-h2 {
+h2,
+h3 {
     font-size: 60px;
     line-height: 1;
     margin: .5em 0;
@@ -54,4 +57,15 @@ pre {
     color: #333e48;
     font-size: 30px;
     font-weight: bold;
+}
+
+.test {
+    background-color: lightgray;
+    margin-bottom: 1.5rem;
+    margin-right: .05rem;
+    margin-top: 0;
+    overflow: wrap;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 30px;
 }
