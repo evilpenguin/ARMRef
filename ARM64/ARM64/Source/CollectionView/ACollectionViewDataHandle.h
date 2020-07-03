@@ -11,15 +11,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class AInstructionLoader, AInstruction;
-@protocol ACollectionViewDataHandleTouch;
+@protocol ACollectionViewDelegatesTouchHandle;
 @interface ACollectionViewDataHandle : NSObject <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-@property (nonatomic, weak) id<ACollectionViewDataHandleTouch> handleTouch;
+@property (nonatomic, weak) id<ACollectionViewDelegatesTouchHandle> handleTouch;
 
 - (instancetype) initWithLoader:(AInstructionLoader *)loader;
 
 @end
 
-@protocol ACollectionViewDataHandleTouch <NSObject>
+@protocol ACollectionViewDelegatesTouchHandle <NSObject>
 @required
 - (void) collectioinViewHandle:(ACollectionViewDataHandle *)handle didTouchInstruction:(AInstruction *)instruction;
 @end

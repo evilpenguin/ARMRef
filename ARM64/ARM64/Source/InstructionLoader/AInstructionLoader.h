@@ -12,6 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AInstructionLoader : NSObject
+@property (nonatomic, strong, nullable) NSString *armVersion;
+@property (nonatomic, strong, nullable) NSString *filerString;
 
 - (void) load;
 - (NSArray<AInstruction *> *) instructions;

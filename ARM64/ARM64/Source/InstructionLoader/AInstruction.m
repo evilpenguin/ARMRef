@@ -28,4 +28,22 @@
     return desc.copy;
 }
 
+#pragma mark - Setters
+
+- (void) setDecode:(NSString *)decode {
+    _decode = decode;
+    
+    _decode = [_decode stringByReplacingOccurrencesOfString:@"; " withString:@";"];
+    _decode = [_decode stringByReplacingOccurrencesOfString:@";" withString:@";\n"];
+    _decode = [_decode stringByReplacingCharactersInRange:NSMakeRange(_decode.length - 1, 1) withString:@""];
+}
+
+- (void) setOperation:(NSString *)operation {
+    _operation = operation;
+    
+    _operation = [_operation stringByReplacingOccurrencesOfString:@"; " withString:@";"];
+    _operation = [_operation stringByReplacingOccurrencesOfString:@";" withString:@";\n"];
+    _operation = [_operation stringByReplacingCharactersInRange:NSMakeRange(_operation.length - 1, 1) withString:@""];
+}
+
 @end

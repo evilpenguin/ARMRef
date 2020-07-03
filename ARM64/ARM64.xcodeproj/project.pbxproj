@@ -13,13 +13,14 @@
 		A9A6CEA324A9355000C738BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEA224A9355000C738BD /* main.m */; };
 		A9A6CEB024A9469300C738BD /* AInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEAF24A9469300C738BD /* AInstruction.m */; };
 		A9A6CEB324A946D900C738BD /* AInstructionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB224A946D900C738BD /* AInstructionLoader.m */; };
-		A9A6CEB424A9488600C738BD /* ARM64.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEAC24A9450100C738BD /* ARM64.json */; };
+		A9A6CEB424A9488600C738BD /* ARMv8.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEAC24A9450100C738BD /* ARMv8.json */; };
 		A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB724A94F4500C738BD /* ACollectionView.m */; };
 		A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBA24A94FF000C738BD /* ACollectionViewDataHandle.m */; };
 		A9A6CEBE24A950DA00C738BD /* ACollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBD24A950DA00C738BD /* ACollectionViewCell.m */; };
 		A9A6CEC124A95B3D00C738BD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A6CEC024A95B3D00C738BD /* WebKit.framework */; };
-		A9A6CEC524A95C3C00C738BD /* AWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEC424A95C3C00C738BD /* AWebViewController.m */; };
-		A9A6CEC724A9602100C738BD /* arm.css in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEC624A9602100C738BD /* arm.css */; };
+		A9A6CED624AF9CD900C738BD /* AInstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CED524AF9CD900C738BD /* AInstructionViewController.m */; };
+		A9A6CEDA24AFA18100C738BD /* UIColor+A.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CED924AFA18100C738BD /* UIColor+A.m */; };
+		A9A6CEDD24AFA7A200C738BD /* AInstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEDC24AFA7A200C738BD /* AInstructionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,7 @@
 		A9A6CE9C24A9355000C738BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A6CEA124A9355000C738BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9A6CEA224A9355000C738BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A9A6CEAC24A9450100C738BD /* ARM64.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ARM64.json; sourceTree = "<group>"; };
+		A9A6CEAC24A9450100C738BD /* ARMv8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ARMv8.json; sourceTree = "<group>"; };
 		A9A6CEAE24A9469300C738BD /* AInstruction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstruction.h; sourceTree = "<group>"; };
 		A9A6CEAF24A9469300C738BD /* AInstruction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AInstruction.m; sourceTree = "<group>"; };
 		A9A6CEB124A946D900C738BD /* AInstructionLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstructionLoader.h; sourceTree = "<group>"; };
@@ -43,9 +44,12 @@
 		A9A6CEBC24A950DA00C738BD /* ACollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACollectionViewCell.h; sourceTree = "<group>"; };
 		A9A6CEBD24A950DA00C738BD /* ACollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACollectionViewCell.m; sourceTree = "<group>"; };
 		A9A6CEC024A95B3D00C738BD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		A9A6CEC324A95C3C00C738BD /* AWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWebViewController.h; sourceTree = "<group>"; };
-		A9A6CEC424A95C3C00C738BD /* AWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWebViewController.m; sourceTree = "<group>"; };
-		A9A6CEC624A9602100C738BD /* arm.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = arm.css; sourceTree = "<group>"; };
+		A9A6CED424AF9CD900C738BD /* AInstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AInstructionViewController.h; sourceTree = "<group>"; };
+		A9A6CED524AF9CD900C738BD /* AInstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AInstructionViewController.m; sourceTree = "<group>"; };
+		A9A6CED824AFA18100C738BD /* UIColor+A.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+A.h"; sourceTree = "<group>"; };
+		A9A6CED924AFA18100C738BD /* UIColor+A.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+A.m"; sourceTree = "<group>"; };
+		A9A6CEDB24AFA7A200C738BD /* AInstructionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstructionView.h; sourceTree = "<group>"; };
+		A9A6CEDC24AFA7A200C738BD /* AInstructionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AInstructionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,10 +96,11 @@
 				A9A6CEA224A9355000C738BD /* main.m */,
 				A9A6CE9024A9354F00C738BD /* AAppDelegate.h */,
 				A9A6CE9124A9354F00C738BD /* AAppDelegate.m */,
-				A9A6CEAA24A9367D00C738BD /* Main */,
+				A9A6CED724AFA16000C738BD /* Categories */,
 				A9A6CEB524A94F2D00C738BD /* CollectionView */,
-				A9A6CEAD24A9467B00C738BD /* Instructions */,
-				A9A6CEC224A95C2700C738BD /* WebView */,
+				A9A6CEAA24A9367D00C738BD /* Main */,
+				A9A6CED324AF9CD900C738BD /* Instruction  */,
+				A9A6CEAD24A9467B00C738BD /* InstructionLoader */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -114,13 +119,12 @@
 			children = (
 				A9A6CE9C24A9355000C738BD /* Assets.xcassets */,
 				A9A6CEA124A9355000C738BD /* Info.plist */,
-				A9A6CEC624A9602100C738BD /* arm.css */,
-				A9A6CEAC24A9450100C738BD /* ARM64.json */,
+				A9A6CEAC24A9450100C738BD /* ARMv8.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		A9A6CEAD24A9467B00C738BD /* Instructions */ = {
+		A9A6CEAD24A9467B00C738BD /* InstructionLoader */ = {
 			isa = PBXGroup;
 			children = (
 				A9A6CEAE24A9469300C738BD /* AInstruction.h */,
@@ -128,7 +132,7 @@
 				A9A6CEB124A946D900C738BD /* AInstructionLoader.h */,
 				A9A6CEB224A946D900C738BD /* AInstructionLoader.m */,
 			);
-			path = Instructions;
+			path = InstructionLoader;
 			sourceTree = "<group>";
 		};
 		A9A6CEB524A94F2D00C738BD /* CollectionView */ = {
@@ -152,13 +156,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A9A6CEC224A95C2700C738BD /* WebView */ = {
+		A9A6CED324AF9CD900C738BD /* Instruction  */ = {
 			isa = PBXGroup;
 			children = (
-				A9A6CEC324A95C3C00C738BD /* AWebViewController.h */,
-				A9A6CEC424A95C3C00C738BD /* AWebViewController.m */,
+				A9A6CEDB24AFA7A200C738BD /* AInstructionView.h */,
+				A9A6CEDC24AFA7A200C738BD /* AInstructionView.m */,
+				A9A6CED424AF9CD900C738BD /* AInstructionViewController.h */,
+				A9A6CED524AF9CD900C738BD /* AInstructionViewController.m */,
 			);
-			path = WebView;
+			path = "Instruction ";
+			sourceTree = "<group>";
+		};
+		A9A6CED724AFA16000C738BD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A9A6CED824AFA18100C738BD /* UIColor+A.h */,
+				A9A6CED924AFA18100C738BD /* UIColor+A.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A6CEC724A9602100C738BD /* arm.css in Resources */,
-				A9A6CEB424A9488600C738BD /* ARM64.json in Resources */,
+				A9A6CEB424A9488600C738BD /* ARMv8.json in Resources */,
 				A9A6CE9D24A9355000C738BD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,13 +246,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A6CEDA24AFA18100C738BD /* UIColor+A.m in Sources */,
 				A9A6CEBE24A950DA00C738BD /* ACollectionViewCell.m in Sources */,
-				A9A6CEC524A95C3C00C738BD /* AWebViewController.m in Sources */,
 				A9A6CEB024A9469300C738BD /* AInstruction.m in Sources */,
 				A9A6CE9824A9354F00C738BD /* AMainViewController.m in Sources */,
 				A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */,
 				A9A6CE9224A9354F00C738BD /* AAppDelegate.m in Sources */,
 				A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */,
+				A9A6CED624AF9CD900C738BD /* AInstructionViewController.m in Sources */,
+				A9A6CEDD24AFA7A200C738BD /* AInstructionView.m in Sources */,
 				A9A6CEA324A9355000C738BD /* main.m in Sources */,
 				A9A6CEB324A946D900C738BD /* AInstructionLoader.m in Sources */,
 			);

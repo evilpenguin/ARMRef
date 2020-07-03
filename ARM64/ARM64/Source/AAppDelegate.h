@@ -12,7 +12,7 @@
 @class AMainViewController, AInstructionLoader;
 @interface AAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) AMainViewController *mainViewController;
+@property (nonatomic, strong) UINavigationController *mainViewController;
 @property (nonatomic, strong) AInstructionLoader *loader;
 
 @end

@@ -31,7 +31,7 @@
 - (nonnull __kindof UICollectionViewCell *) collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
     cell.instruction = self.loader.instructions[indexPath.row];
-    
+
     return cell;
 }
 
@@ -43,6 +43,16 @@
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.handleTouch collectioinViewHandle:self didTouchInstruction:self.loader.instructions[indexPath.row]];
+}
+
+- (void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = UIColor.redColor;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    cell.contentView.backgroundColor = UIColor.whiteColor;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

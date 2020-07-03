@@ -16,10 +16,18 @@
 
 @implementation AInstructionLoader
 
-#pragma mark - AInstructionLoader
+- (instancetype) init {
+    if (self = [super init]) {
+        self.armVersion = @"ARMv8";
+    }
+    
+    return self;
+}
+
+#pragma mark - Public
 
 - (void) load {
-    NSString *jsonFile = [NSBundle.mainBundle pathForResource:@"ARM64" ofType:@"json"];
+    NSString *jsonFile = [NSBundle.mainBundle pathForResource:self.armVersion ofType:@"json"];
     if (jsonFile.length) {
         NSData *jsonData = [NSData dataWithContentsOfFile:jsonFile];
         if (jsonData.length) {
@@ -34,6 +42,14 @@
 #pragma mark - Getter
 
 - (NSArray<AInstruction *> *) instructions {
+    if (self.filerString.length) {
+        NSIndexSet *indices = [self.allInstructions indexesOfObjectsPassingTest:^BOOL(AInstruction * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            return [obj.mnemonic rangeOfString:self.filerString options:NSCaseInsensitiveSearch].location != NSNotFound;
+        }];
+        
+        return [self.allInstructions objectsAtIndexes:indices];
+    }
+    
     return self.allInstructions;
 }
 
@@ -54,8 +70,12 @@
         instruction.mnemonic = key;
         
         NSDictionary *instructionDict = dictionary[key];
-        instruction.desc = instructionDict[@"description"];
-        instruction.html = instructionDict[@"html"];
+        instruction.shortDesc = instructionDict[@"short_desc"];
+        instruction.fullDesc = instructionDict[@"full_desc"];
+        instruction.symbols = instructionDict[@"symbol"];
+        instruction.syntax = instructionDict[@"syntax"];
+        instruction.decode = instructionDict[@"decode"];
+        instruction.operation = instructionDict[@"operation"];
         
         [self.allInstructions addObject:instruction];
     }
