@@ -11,7 +11,7 @@ Suggested
 ----------
 - Enjoy :)
 
-Shoutout
+Shout-out
 ----------
 - ‪@jamiebishop123‬
 
