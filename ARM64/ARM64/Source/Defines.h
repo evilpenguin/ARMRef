@@ -3,7 +3,7 @@
 //  ARM64
 //
 //  Created by evilpenguin on 7/3/20.
-//  Copyright © 2020 EvilPenguin. All rights reserved.
+//  Copyright © 2020 James Emrich (EvilPenguin). All rights reserved.
 //
 
 #ifndef Defines_h
