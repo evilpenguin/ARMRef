@@ -11,11 +11,11 @@
 #import "ACollectionView.h"
 #import "ACollectionViewDataHandle.h"
 #import "AInstructionViewController.h"
-#import "UIColor+A.h"
 
 @interface AMainViewController () <UISearchBarDelegate, ACollectionViewDelegatesTouchHandle>
 @property (nonatomic, weak) AInstructionLoader *loader;
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) UILabel *noDataLabel;
 @property (nonatomic, strong) ACollectionView *collectionView;
 @property (nonatomic, strong) ACollectionViewDataHandle *collectionViewDataHandle;
 
@@ -29,6 +29,11 @@
     if (self = [super init]) {
         self.title  = loader.armVersion;
         self.loader = loader;
+        
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(_loaderNotification:)
+                                                   name:AInstructionLoaderFinishedNotificaton
+                                                 object:nil];
     }
     
     return self;
@@ -42,7 +47,10 @@
     
     // Serach
     [self.view addSubview:self.searchBar];
-    
+
+    // No data
+    [self.view addSubview:self.noDataLabel];
+
     // Collection View
     [self.view addSubview:self.collectionView];
 }
@@ -50,19 +58,38 @@
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
+    // Points
+    CGFloat leftRightInset = self.view.safeAreaInsets.left + self.view.safeAreaInsets.right;
+    
     // Search
-    self.searchBar.frame = CGRectMake(self.view.safeAreaInsets.left, self.view.safeAreaInsets.top, self.view.bounds.size.width, 45.0f);
+    self.searchBar.frame = CGRectMake(0.0f, self.view.safeAreaInsets.top, self.view.bounds.size.width, 45.0f);
+    
+    // No Data
+    self.noDataLabel.frame = self.view.bounds;
     
     // Collection view
     CGFloat colletionViewHeight = self.view.bounds.size.height - (CGRectGetMaxY(self.searchBar.frame) + 5.0f);
-    self.collectionView.frame = CGRectMake(self.view.safeAreaInsets.left, CGRectGetMaxY(self.searchBar.frame) + 5.0f, self.view.bounds.size.width, colletionViewHeight);
-    [self.collectionView reloadData];
+    self.collectionView.frame = CGRectMake(self.view.safeAreaInsets.left, CGRectGetMaxY(self.searchBar.frame) + 5.0f, self.view.bounds.size.width - leftRightInset, colletionViewHeight);
+    [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
+#pragma mark - Private
+
+- (void) _loaderNotification:(NSNotification *)notification {
+    [self _updateDataAndLoaderWithString:nil];
+}
+
+- (void) _updateDataAndLoaderWithString:(NSString *)string {
+    self.loader.filerString = string;
+    self.collectionViewDataHandle.instructions = self.loader.instructions;
     [self.collectionView reloadData];
+    
+    [self _showNoDataStyle:!self.collectionViewDataHandle.instructions.count];
+}
+
+- (void) _showNoDataStyle:(BOOL)show {
+    self.noDataLabel.alpha = (show ? 1.0f : 0.0f);
+    self.collectionView.alpha = (show ? 0.0f : 1.0f);
 }
 
 #pragma mark - Lazy
@@ -83,11 +110,25 @@
     return _searchBar;
 }
 
+- (UILabel *) noDataLabel {
+    if (!_noDataLabel) {
+        _noDataLabel = [[UILabel alloc] init];
+        _noDataLabel.font = [UIFont systemFontOfSize:25.0f weight:UIFontWeightMedium];
+        _noDataLabel.backgroundColor = UIColor.clearColor;
+        _noDataLabel.textColor = UIColor.whiteColor;
+        _noDataLabel.textAlignment = NSTextAlignmentCenter;
+        _noDataLabel.text = @"No Data...";
+    }
+    
+    return _noDataLabel;
+}
+
 - (ACollectionView *) collectionView {
     if (!_collectionView) {
         _collectionView = [[ACollectionView alloc] init];
         _collectionView.dataSource = self.collectionViewDataHandle;
         _collectionView.delegate = self.collectionViewDataHandle;
+        _collectionView.alpha = 0.0f;
     }
     
     return _collectionView;
@@ -95,7 +136,7 @@
 
 - (ACollectionViewDataHandle *) collectionViewDataHandle {
     if (!_collectionViewDataHandle) {
-        _collectionViewDataHandle = [[ACollectionViewDataHandle alloc] initWithLoader:self.loader];
+        _collectionViewDataHandle = [[ACollectionViewDataHandle alloc] init];
         _collectionViewDataHandle.handleTouch = self;
     }
     
@@ -105,13 +146,11 @@
 #pragma mark - UISearchBarDelegate
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    self.loader.filerString = searchText;
-    [self.collectionView reloadData];
+    [self _updateDataAndLoaderWithString:searchText];
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    self.loader.filerString = nil;
-    [self.collectionView reloadData];
+    [self _updateDataAndLoaderWithString:nil];
     
     searchBar.text = nil;
     [searchBar resignFirstResponder];

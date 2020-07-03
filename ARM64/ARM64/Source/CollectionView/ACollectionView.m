@@ -8,7 +8,6 @@
 
 #import "ACollectionView.h"
 #import "ACollectionViewCell.h"
-#import "UIColor+A.h"
 
 @implementation ACollectionView
 

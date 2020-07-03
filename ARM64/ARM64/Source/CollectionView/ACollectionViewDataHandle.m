@@ -11,38 +11,28 @@
 #import "ACollectionViewCell.h"
 
 @interface ACollectionViewDataHandle ()
-@property (nonatomic, weak) AInstructionLoader *loader;
 
 @end
 
 @implementation ACollectionViewDataHandle
 
-#pragma mark - ACollectionViewDataHandle
-
-- (instancetype) initWithLoader:(AInstructionLoader *)loader {
-    if (self = [super init]) {
-        self.loader = loader;
-    }
-    
-    return self;
-}
 #pragma mark - UICollectionViewDataSource
 
 - (nonnull __kindof UICollectionViewCell *) collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
-    cell.instruction = self.loader.instructions[indexPath.row];
+    cell.instruction = self.instructions[indexPath.row];
 
     return cell;
 }
 
 - (NSInteger) collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.loader.instructions.count;
+    return self.instructions.count;
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.handleTouch collectioinViewHandle:self didTouchInstruction:self.loader.instructions[indexPath.row]];
+    [self.handleTouch collectioinViewHandle:self didTouchInstruction:self.instructions[indexPath.row]];
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,9 +49,9 @@
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
-    cell.instruction = self.loader.instructions[indexPath.row];
+    cell.instruction = self.instructions[indexPath.row];
     
-    CGFloat maxSize = [cell maxSizeForInstruction:self.loader.instructions[indexPath.row] withWidth:collectionView.bounds.size.width];
+    CGFloat maxSize = [cell maxSizeForInstruction:self.instructions[indexPath.row] withWidth:collectionView.bounds.size.width];
     
     return CGSizeMake(collectionView.bounds.size.width, maxSize);
 }

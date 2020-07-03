@@ -9,6 +9,8 @@
 #import "AInstructionLoader.h"
 #import "AInstruction.h"
 
+NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFinishedNotificaton";
+
 @interface AInstructionLoader ()
 @property (nonatomic, strong) NSMutableArray<AInstruction *> *allInstructions;
 
@@ -19,24 +21,36 @@
 - (instancetype) init {
     if (self = [super init]) {
         self.armVersion = @"ARMv8";
+        
+        [self _load];
     }
     
     return self;
 }
 
-#pragma mark - Public
+#pragma mark - Private
 
-- (void) load {
-    NSString *jsonFile = [NSBundle.mainBundle pathForResource:self.armVersion ofType:@"json"];
-    if (jsonFile.length) {
-        NSData *jsonData = [NSData dataWithContentsOfFile:jsonFile];
-        if (jsonData.length) {
-            NSArray *instructions = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-            if (instructions.count) {
-                [self _parsedArrayToInstructiions:instructions];
+- (void) _load {
+    weakify(self);
+    dispatch_async_global(^ {
+        strongify(self);
+        
+        NSString *jsonFile = [NSBundle.mainBundle pathForResource:self.armVersion ofType:@"json"];
+        if (jsonFile.length) {
+            NSData *jsonData = [NSData dataWithContentsOfFile:jsonFile];
+            if (jsonData.length) {
+                NSArray *instructions = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+                if (instructions.count) {
+                    [self _parsedArrayToInstructiions:instructions];
+                    
+                    // Notify
+                    dispatch_async_main(^{
+                        [NSNotificationCenter.defaultCenter postNotificationName:AInstructionLoaderFinishedNotificaton object:nil];
+                    });
+                }
             }
         }
-    }
+    });
 }
 
 #pragma mark - Getter
@@ -68,6 +82,7 @@
     for (NSDictionary *instructionDict in array) {
         AInstruction *instruction = [[AInstruction alloc] init];
         instruction.mnemonic = instructionDict[@"mnemonic"];
+        
         instruction.shortDesc = instructionDict[@"short_desc"];
         instruction.fullDesc = instructionDict[@"full_desc"];
         instruction.symbols = instructionDict[@"symbol"];

@@ -8,7 +8,6 @@
 
 #import "ANavigationController.h"
 #import "AMainViewController.h"
-#import "UIColor+A.h"
 
 @interface ANavigationController ()
 @property (nonatomic, weak) AInstructionLoader *loader;

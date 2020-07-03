@@ -8,7 +8,6 @@
 
 #import "AAppDelegate.h"
 #import "AInstructionLoader.h"
-#import "UIColor+A.h"
 
 @implementation AAppDelegate
 
@@ -39,10 +38,7 @@
 }
 
 - (AInstructionLoader *) loader {
-    if (!_loader) {
-        _loader = [[AInstructionLoader alloc] init];
-        [_loader load];
-    }
+    if (!_loader) _loader = [[AInstructionLoader alloc] init];
     
     return _loader;
 }

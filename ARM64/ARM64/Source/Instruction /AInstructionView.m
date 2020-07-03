@@ -8,7 +8,6 @@
 
 #import "AInstructionView.h"
 #import "AInstruction.h"
-#import "UIColor+A.h"
 
 @interface AInstructionView ()
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -27,7 +26,6 @@
 
 @property (nonatomic, strong) UILabel *operationSectionLabel;
 @property (nonatomic, strong) UILabel *operationLabel;
-
 
 @end
 
@@ -56,14 +54,15 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     
+    // Scrollview
+    CGFloat leftRightInset = self.safeAreaInsets.left + self.safeAreaInsets.right;
+    self.scrollView.frame = CGRectMake(self.safeAreaInsets.left, 0.0f, self.bounds.size.width - leftRightInset, self.bounds.size.height);
+
     // Points
     CGFloat headerIndent = 8.0f;
-    CGFloat headerMaxWidth = self.bounds.size.width - (headerIndent * 2.0f);
+    CGFloat headerMaxWidth = self.scrollView.bounds.size.width - (headerIndent * 2.0f);
     CGFloat contentIndent = headerIndent * 2.5f;
-    CGFloat contextMaxWidth = self.bounds.size.width - (contentIndent * 2.0f);
-
-    // Scrollview
-    self.scrollView.frame = self.bounds;
+    CGFloat contextMaxWidth = self.scrollView.bounds.size.width - (contentIndent * 2.0f);
 
     // Title label
     //CGSize titleSize = [self.titleLabel sizeThatFits:CGSizeMake(headerMaxWidth, CGFLOAT_MAX)];
@@ -116,7 +115,7 @@
     self.operationLabel.frame = CGRectMake(contentIndent, CGRectGetMaxY(self.operationSectionLabel.frame) + 10.0f, contextMaxWidth, operationSize.height + 4.0f);
 
     // Scroll content size
-    self.scrollView.contentSize = CGSizeMake(self.bounds.size.width, CGRectGetMaxY(self.operationLabel.frame) + 10.0f);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, CGRectGetMaxY(self.operationLabel.frame) + 10.0f);
 }
 
 #pragma mark - Setter

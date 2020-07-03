@@ -53,6 +53,8 @@
 		A9A6CEDC24AFA7A200C738BD /* AInstructionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AInstructionView.m; sourceTree = "<group>"; };
 		A9A6CEDE24AFD7D300C738BD /* ANavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANavigationController.h; sourceTree = "<group>"; };
 		A9A6CEDF24AFD7D300C738BD /* ANavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ANavigationController.m; sourceTree = "<group>"; };
+		A9A6CEE124AFE3C800C738BD /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		A9A6CEE224AFE40500C738BD /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				A9A6CEA224A9355000C738BD /* main.m */,
+				A9A6CEE124AFE3C800C738BD /* Defines.h */,
+				A9A6CEE224AFE40500C738BD /* PrefixHeader.pch */,
 				A9A6CE9024A9354F00C738BD /* AAppDelegate.h */,
 				A9A6CE9124A9354F00C738BD /* AAppDelegate.m */,
 				A9A6CED724AFA16000C738BD /* Categories */,
@@ -385,6 +389,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3YM9UX59B;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ARM64/Source/PrefixHeader.pch";
 				INFOPLIST_FILE = ARM64/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -403,6 +408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = H3YM9UX59B;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ARM64/Source/PrefixHeader.pch";
 				INFOPLIST_FILE = ARM64/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
