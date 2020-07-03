@@ -170,8 +170,12 @@
     }];
     
     NSRange newLine = [string rangeOfString:@"\n"];
-    [attributedString setAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16.0f weight:UIFontWeightRegular], NSBackgroundColorAttributeName: UIColor.clearColor}
-                              range:NSMakeRange(newLine.location, string.length - newLine.location)];
+    NSDictionary *afterSymbolAttributes = @{
+        NSForegroundColorAttributeName: [UIColor colorFromHex:0x333e48],
+        NSFontAttributeName: [UIFont systemFontOfSize:16.0f weight:UIFontWeightRegular],
+        NSBackgroundColorAttributeName: UIColor.clearColor
+    };
+    [attributedString setAttributes:afterSymbolAttributes range:NSMakeRange(newLine.location, string.length - newLine.location)];
     
     UILabel *label = [[UILabel alloc] init];
     label.backgroundColor = UIColor.clearColor;

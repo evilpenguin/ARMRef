@@ -107,6 +107,7 @@
         _searchBar.showsCancelButton = YES;
         _searchBar.searchTextField.backgroundColor = UIColor.whiteColor;
         _searchBar.searchTextField.tintColor = _searchBar.backgroundColor;
+        _searchBar.searchTextField.textColor = _searchBar.backgroundColor;
     }
     
     return _searchBar;
