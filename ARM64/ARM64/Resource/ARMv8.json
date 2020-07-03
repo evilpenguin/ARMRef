@@ -1,5 +1,6 @@
-{
-    "ADC" : {
+[
+    {
+        "mnemonic": "ADA",
         "short_desc" : "Add with Carry",
         "full_desc" : "Add with Carry adds two register values and the Carry flag value, and writes the result to the destination register.",
         "syntax" : [
@@ -17,7 +18,8 @@
         "decode" : "integer d = UInt(Rd);integer n = UInt(Rn);integer m = UInt(Rm);integer datasize = if sf == '1' then 64 else 32;",
         "operation" : "bits(datasize) result; bits(datasize) operand1 = X[n]; bits(datasize) operand2 = X[m];(result, -) = AddWithCarry(operand1, operand2, PSTATE.C); X[d] = result;"
     },
-    "ADCS" : {
+    {
+        "mnemonic": "ADCS",
         "short_desc" : "Add with Carry, setting flags",
         "full_desc" : "Add with Carry, setting flags, adds two register values and the Carry flag value, and writes the result to the destination register. It updates the condition flags based on the result.",
         "syntax" : [
@@ -35,7 +37,8 @@
         "decode" : "integer d = UInt(Rd);integer n = UInt(Rn);integer m = UInt(Rm);integer datasize = if sf == '1' then 64 else 32;",
         "operation" : "bits(datasize) result; bits(datasize) operand1 = X[n]; bits(datasize) operand2 = X[m]; bits(4) nzcv;(result, nzcv) = AddWithCarry(operand1, operand2, PSTATE.C); PSTATE.<N,Z,C,V> = nzcv;X[d] = result;"
     },
-    "ADD (extended register)" : {
+    {
+        "mnemonic": "ADD (extended register)",
         "short_desc" : "Add (extended register) adds a register value and a sign or zero-extended register value",
         "full_desc" : "Add (extended register) adds a register value and a sign or zero-extended register value, followed by an optional left shift amount, and writes the result to the destination register. The argument that is extended from the <Rm> register can be a byte, halfword, word, or doubleword.",
         "syntax" : [
@@ -55,4 +58,4 @@
         "decode" : "integer d = UInt(Rd);integer n = UInt(Rn);integer m = UInt(Rm);integer datasize = if sf == '1' then 64 else 32; ExtendType extend_type = DecodeRegExtend(option); integer shift = UInt(imm3);if shift > 4 then ReservedValue();",
         "operation" : "bits(datasize) result;bits(datasize) operand1 = if n == 31 then SP[] else X[n]; bits(datasize) operand2 = ExtendReg(m, extend_type, shift);(result, -) = AddWithCarry(operand1, operand2, '0');if d == 31 then SP[] = result;elseX[d] = result;"
     }
-}
+]

@@ -31,9 +31,9 @@
     if (jsonFile.length) {
         NSData *jsonData = [NSData dataWithContentsOfFile:jsonFile];
         if (jsonData.length) {
-            NSDictionary *instructionDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-            if (instructionDict.count) {
-                [self _dictionaryToinstructions:instructionDict];
+            NSArray *instructions = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+            if (instructions.count) {
+                [self _parsedArrayToInstructiions:instructions];
             }
         }
     }
@@ -63,13 +63,11 @@
 
 #pragma mark - Private
 
-- (void) _dictionaryToinstructions:(NSDictionary *)dictionary {
+- (void) _parsedArrayToInstructiions:(NSArray<NSDictionary *> *)array {
     // Create
-    for (NSString *key in dictionary.allKeys) {
+    for (NSDictionary *instructionDict in array) {
         AInstruction *instruction = [[AInstruction alloc] init];
-        instruction.mnemonic = key;
-        
-        NSDictionary *instructionDict = dictionary[key];
+        instruction.mnemonic = instructionDict[@"mnemonic"];
         instruction.shortDesc = instructionDict[@"short_desc"];
         instruction.fullDesc = instructionDict[@"full_desc"];
         instruction.symbols = instructionDict[@"symbol"];
