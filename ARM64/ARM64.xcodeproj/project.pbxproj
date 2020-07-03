@@ -130,7 +130,7 @@
 				A9A6CEE324AFF10000C738BD /* ARM64.entitlements */,
 				A9A6CE9C24A9355000C738BD /* Assets.xcassets */,
 				A9A6CEA124A9355000C738BD /* Info.plist */,
-				A9A6CEAC24A9450100C738BD /* ARMv8.json */,
+				A9A6CEE424AFF6CB00C738BD /* References */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -185,6 +185,14 @@
 				A9A6CED924AFA18100C738BD /* UIColor+A.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		A9A6CEE424AFF6CB00C738BD /* References */ = {
+			isa = PBXGroup;
+			children = (
+				A9A6CEAC24A9450100C738BD /* ARMv8.json */,
+			);
+			path = References;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
