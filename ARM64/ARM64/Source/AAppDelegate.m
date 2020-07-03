@@ -7,7 +7,6 @@
 //
 
 #import "AAppDelegate.h"
-#import "AMainViewController.h"
 #import "AInstructionLoader.h"
 #import "UIColor+A.h"
 
@@ -27,27 +26,16 @@
     if (!_window) {
         _window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
         _window.backgroundColor = [UIColor colorFromHex:0x333e48];
-        _window.rootViewController = self.mainViewController;
+        _window.rootViewController = self.navController;
     }
     
     return _window;
 }
 
-- (UINavigationController *) mainViewController {
-    if (!_mainViewController) {
-        AMainViewController *mainViewController = [[AMainViewController alloc] initWithLoader:self.loader];
-        
-        _mainViewController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-        _mainViewController.navigationBar.tintColor = [UIColor colorFromHex:0x8fa2b1];
+- (ANavigationController *) navController {
+    if (!_navController) _navController = [[ANavigationController alloc] initWithLoader:self.loader];
 
-        UINavigationBarAppearance *navigationBarAppearence = [[UINavigationBarAppearance alloc] init];
-        navigationBarAppearence.shadowColor = UIColor.clearColor;
-        navigationBarAppearence.backgroundColor = [UIColor colorFromHex:0x424C54];
-        navigationBarAppearence.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor, NSFontAttributeName: [UIFont systemFontOfSize:25.0f weight:UIFontWeightMedium]};
-        _mainViewController.navigationBar.standardAppearance = navigationBarAppearence;
-    }
-    
-    return _mainViewController;
+    return _navController;
 }
 
 - (AInstructionLoader *) loader {

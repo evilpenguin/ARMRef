@@ -16,10 +16,10 @@
 
 - (instancetype) init {
     if (self = [super initWithFrame:CGRectZero collectionViewLayout:UICollectionViewFlowLayout.new]) {
-        self.backgroundColor = [UIColor colorFromHex:0x333e48];
-        self.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, 0.0f, 0.0f);
-        self.alwaysBounceVertical = YES;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
+        self.backgroundColor                            = [UIColor colorFromHex:0x333e48];
+        self.contentInset                               = UIEdgeInsetsMake(10.0f, 0.0f, 0.0f, 0.0f);
+        self.alwaysBounceVertical                       = YES;
+        self.translatesAutoresizingMaskIntoConstraints  = NO;
         
         [self registerClass:ACollectionViewCell.class forCellWithReuseIdentifier:ACollectionViewCell.identifier];
     }

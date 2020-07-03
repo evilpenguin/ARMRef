@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AMainViewController.h"
+#import "ANavigationController.h"
 
 @class AMainViewController, AInstructionLoader;
 @interface AAppDelegate : UIResponder <UIApplicationDelegate>
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) UINavigationController *mainViewController;
+@property (nonatomic, strong) ANavigationController *navController;
 @property (nonatomic, strong) AInstructionLoader *loader;
 
 @end

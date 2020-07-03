@@ -35,30 +35,24 @@
         "decode" : "integer d = UInt(Rd);integer n = UInt(Rn);integer m = UInt(Rm);integer datasize = if sf == '1' then 64 else 32;",
         "operation" : "bits(datasize) result; bits(datasize) operand1 = X[n]; bits(datasize) operand2 = X[m]; bits(4) nzcv;(result, nzcv) = AddWithCarry(operand1, operand2, PSTATE.C); PSTATE.<N,Z,C,V> = nzcv;X[d] = result;"
     },
-    "B.cond" : {
-        "short_desc" : "Branch conditionally",
-        "full_desc" : "Branch conditionally to a label at a PC-relative offset, with a hint that this is not a subroutine call or return.",
+    "ADD (extended register)" : {
+        "short_desc" : "Add (extended register) adds a register value and a sign or zero-extended register value",
+        "full_desc" : "Add (extended register) adds a register value and a sign or zero-extended register value, followed by an optional left shift amount, and writes the result to the destination register. The argument that is extended from the <Rm> register can be a byte, halfword, word, or doubleword.",
         "syntax" : [
-            "B.<cond>\t<label>"
+            "ADD\t<Wd|WSP>, <Wn|WSP>, <Wm>{, <extend> {#<amount>}}\t; 32-bit variant",
+            "ADD\t<Xd|SP>, <Xn|SP>, <R><m>{, <extend> {#<amount>}}\t; 64-bit variant"
         ],
         "symbol" : [
-            "<cond>\nIs one of the standard conditions, encoded in the \"cond\" field in the standard way.",
-            "<label>\nIs the program label to be conditionally branched to. Its offset from the address of this instruction, in the range +/-1MB, is encoded as \"imm19\" times 4."
+            "<Wd|WSP>\nIs the 32-bit name of the destination general-purpose register or stack pointer, encoded in the \"Rd\" field",
+            "<Wn|WSP>\nIs the 32-bit name of the first source general-purpose register or stack pointer, encoded in the \"Rn\" field.",
+            "<Wm>\nIs the 32-bit name of the second general-purpose source register, encoded in the \"Rm\" field.",
+            "<Xd|SP>\nIs the 64-bit name of the destination general-purpose register or stack pointer, encoded in the \"Rd\" field.",
+            "<Xn|SP>\nIs the 64-bit name of the first source general-purpose register or stack pointer, encoded in the \"Rn\" field.",
+            "<R>\nIs a width specifier, encoded in the \"option\" field. It can have the following values:\nW when option = 00x\nW when option = 010\nX when option = x11\nW when option = 10x\nW when option = 110",
+            "<m>\nIs the number [0-30] of the second general-purpose source register or the name ZR (31), encoded in the \"Rm\" field.",
+            "<extend>\nFor the 32-bit variant: is the extension to be applied to the second source operand, encoded in the \"option\" field. It can have the following values:\nUXTB when option = 000\nUXTH when option = 001\nLSL|UXTW when option = 010\nUXTX when option = 011\nSXTB when option = 100\nSXTH when option = 101\nSXTW when option = 110\nSXTX when option = 111\nIf \"Rd\" or \"Rn\" is '11111' (WSP) and \"option\" is '010' then LSL is preferred, but may be omitted when \"imm3\" is '000'. In all other cases <extend> is required and must be UXTW when \"option\" is '010'.\n\nFor the 64-bit variant: is the extension to be applied to the second source operand, encoded in the \"option\" field. It can have the following values:\nUXTB when option = 000\nUXTH when option = 001\nUXTW when option = 010\nLSL|UXTX when option = 011\nSXTB when option = 100\nSXTH when option = 101\nSXTW when option = 110\nSXTX when option = 111\nIf \"Rd\" or \"Rn\" is '11111' (SP) and \"option\" is '011' then LSL is preferred, but may be omitted when \"imm3\" is '000'. In all other cases <extend> is required and must be UXTX when \"option\" is '011'."
         ],
-        "decode" : "bits(64) offset = SignExtend(imm19:'00', 64); bits(4) condition = cond;",
-        "operation" : "if ConditionHolds(condition) then\nBranchTo(PC[] + offset, BranchType_JMP);"
-    },
-    "B.cond" : {
-        "short_desc" : "Branch conditionally",
-        "full_desc" : "Branch conditionally to a label at a PC-relative offset, with a hint that this is not a subroutine call or return.",
-        "syntax" : [
-            "B.<cond>\t<label>"
-        ],
-        "symbol" : [
-            "<cond>\nIs one of the standard conditions, encoded in the \"cond\" field in the standard way.",
-            "<label>\nIs the program label to be conditionally branched to. Its offset from the address of this instruction, in the range +/-1MB, is encoded as \"imm19\" times 4."
-        ],
-        "decode" : "bits(64) offset = SignExtend(imm19:'00', 64); bits(4) condition = cond;",
-        "operation" : "if ConditionHolds(condition) then\nBranchTo(PC[] + offset, BranchType_JMP);"
+        "decode" : "integer d = UInt(Rd);integer n = UInt(Rn);integer m = UInt(Rm);integer datasize = if sf == '1' then 64 else 32; ExtendType extend_type = DecodeRegExtend(option); integer shift = UInt(imm3);if shift > 4 then ReservedValue();",
+        "operation" : "bits(datasize) result;bits(datasize) operand1 = if n == 31 then SP[] else X[n]; bits(datasize) operand2 = ExtendReg(m, extend_type, shift);(result, -) = AddWithCarry(operand1, operand2, '0');if d == 31 then SP[] = result;elseX[d] = result;"
     }
 }

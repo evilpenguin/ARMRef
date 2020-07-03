@@ -27,7 +27,7 @@
 
 - (instancetype) initWithLoader:(AInstructionLoader *)loader {
     if (self = [super init]) {
-        self.title = loader.armVersion;
+        self.title  = loader.armVersion;
         self.loader = loader;
     }
     
@@ -56,6 +56,7 @@
     // Collection view
     CGFloat colletionViewHeight = self.view.bounds.size.height - (CGRectGetMaxY(self.searchBar.frame) + 5.0f);
     self.collectionView.frame = CGRectMake(self.view.safeAreaInsets.left, CGRectGetMaxY(self.searchBar.frame) + 5.0f, self.view.bounds.size.width, colletionViewHeight);
+    [self.collectionView reloadData];
 }
 
 - (void) viewDidAppear:(BOOL)animated {

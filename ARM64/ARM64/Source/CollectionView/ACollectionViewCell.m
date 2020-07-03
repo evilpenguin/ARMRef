@@ -22,10 +22,10 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = UIColor.whiteColor;
-        self.layer.masksToBounds = YES;
-        self.layer.cornerRadius = 10.0f;
-        self.layer.maskedCorners = kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner | kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
+        self.backgroundColor        = UIColor.whiteColor;
+        self.layer.masksToBounds    = YES;
+        self.layer.cornerRadius     = 10.0f;
+        self.layer.maskedCorners    = kCALayerMinXMinYCorner | kCALayerMaxXMinYCorner | kCALayerMinXMaxYCorner | kCALayerMaxXMaxYCorner;
 
         [self.contentView addSubview:self.topLabel];
         [self.contentView addSubview:self.bottomLabel];
