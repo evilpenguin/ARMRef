@@ -2,7 +2,7 @@
 //  AInstructionViewController.m
 //  ARM64
 //
-//  Created by evilpenguin on 7/3/20.
+//  Created by James Emrich (EvilPenguin) on 7/3/20.
 //  Copyright © 2020 James Emrich (EvilPenguin). All rights reserved.
 //
 

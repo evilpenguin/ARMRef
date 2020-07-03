@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  ARM64
 //
-//  Created by evilpenguin on 6/28/20.
+//  Created by James Emrich (EvilPenguin) on 6/28/20.
 //  Copyright © 2020 James Emrich (EvilPenguin). All rights reserved.
 //
 
