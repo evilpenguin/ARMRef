@@ -68,8 +68,10 @@
     self.noDataLabel.frame = self.view.bounds;
     
     // Collection view
+    CGFloat padding = (!leftRightInset ? 8.0f : 0.0f);
     CGFloat colletionViewHeight = self.view.bounds.size.height - (CGRectGetMaxY(self.searchBar.frame) + 5.0f);
-    self.collectionView.frame = CGRectMake(self.view.safeAreaInsets.left, CGRectGetMaxY(self.searchBar.frame) + 5.0f, self.view.bounds.size.width - leftRightInset, colletionViewHeight);
+    CGFloat collectionViewWidth = self.view.bounds.size.width - (leftRightInset + (padding * 2.0f));
+    self.collectionView.frame = CGRectMake(self.view.safeAreaInsets.left + padding, CGRectGetMaxY(self.searchBar.frame) + 5.0f, collectionViewWidth, colletionViewHeight);
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
 
