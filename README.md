@@ -12,6 +12,11 @@ Required
 - iPadOS 13+
 - macOS 10.15+
 
+Coming
+----------
+ - Android
+ - ARM Thumb
+ 
 ARM Versions
 ----------
 - v8.5a
