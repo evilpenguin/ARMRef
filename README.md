@@ -12,6 +12,11 @@ Required
 - iPadOS 13+
 - macOS 10.15+
 
+How to
+----------
+- Open ARMRef/ARMRef.xcodeproj
+- Build and run :)
+
 Shout-out
 ----------
 - @jamiebishop123‬ [![alt text][1.1]][1]
