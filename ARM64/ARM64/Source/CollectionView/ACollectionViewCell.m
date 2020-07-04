@@ -100,6 +100,7 @@
         _topLabel.backgroundColor = UIColor.clearColor;
         _topLabel.font = [UIFont systemFontOfSize:20.0f weight:UIFontWeightBold];
         _topLabel.textColor = UIColor.blackColor;
+        _topLabel.numberOfLines = 2;
     }
     
     return _topLabel;
