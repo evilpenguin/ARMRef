@@ -8,13 +8,14 @@ Required
 - iPadOS 13+
 - macOS 10.15+
 
-Suggested
-----------
-- Enjoy :)
-
 Shout-out
 ----------
 - ‪@jamiebishop123‬
+
+Suggested
+----------
+- Enjoy :)
+- Contribute!
 
 Screenshot
 ----------
