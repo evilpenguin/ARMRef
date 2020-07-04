@@ -1,6 +1,6 @@
 # ARMRef 
 <img src="https://github.com/evilpenguin/ARMRef/blob/master/icons/icon_60pt%402x.png" width="100" height="100" align="center" />
-A iOS, iPadOS, and macOS application reference manual for ARMv8
+An iOS, iPadOS, and macOS application reference manual for ARMv8
 
 Required
 ----------
