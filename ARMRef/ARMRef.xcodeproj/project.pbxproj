@@ -17,11 +17,11 @@
 		A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB724A94F4500C738BD /* ACollectionView.m */; };
 		A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBA24A94FF000C738BD /* ACollectionViewDataHandle.m */; };
 		A9A6CEBE24A950DA00C738BD /* ACollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBD24A950DA00C738BD /* ACollectionViewCell.m */; };
-		A9A6CEC124A95B3D00C738BD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9A6CEC024A95B3D00C738BD /* WebKit.framework */; };
 		A9A6CED624AF9CD900C738BD /* AInstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CED524AF9CD900C738BD /* AInstructionViewController.m */; };
 		A9A6CEDA24AFA18100C738BD /* UIColor+A.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CED924AFA18100C738BD /* UIColor+A.m */; };
 		A9A6CEDD24AFA7A200C738BD /* AInstructionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEDC24AFA7A200C738BD /* AInstructionView.m */; };
 		A9A6CEE024AFD7D300C738BD /* ANavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEDF24AFD7D300C738BD /* ANavigationController.m */; };
+		A9A6CEE824B0373C00C738BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEE724B0373C00C738BD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +56,7 @@
 		A9A6CEE124AFE3C800C738BD /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		A9A6CEE224AFE40500C738BD /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A9A6CEE324AFF10000C738BD /* ARM64.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ARM64.entitlements; sourceTree = "<group>"; };
+		A9A6CEE724B0373C00C738BD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A6CEC124A95B3D00C738BD /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +127,7 @@
 		A9A6CEAB24A936BC00C738BD /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A9A6CEE724B0373C00C738BD /* LaunchScreen.storyboard */,
 				A9A6CEE324AFF10000C738BD /* ARM64.entitlements */,
 				A9A6CE9C24A9355000C738BD /* Assets.xcassets */,
 				A9A6CEA124A9355000C738BD /* Info.plist */,
@@ -253,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9A6CEE824B0373C00C738BD /* LaunchScreen.storyboard in Resources */,
 				A9A6CEB424A9488600C738BD /* ARMv8.5a.json in Resources */,
 				A9A6CE9D24A9355000C738BD /* Assets.xcassets in Resources */,
 			);
@@ -397,7 +399,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ARMRef/Resource/ARM64.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -409,7 +410,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.evilpenguin.armref;
+				PRODUCT_BUNDLE_IDENTIFIER = com.EvilPenguin.armref;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -420,7 +421,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ARMRef/Resource/ARM64.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -432,7 +432,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.evilpenguin.armref;
+				PRODUCT_BUNDLE_IDENTIFIER = com.EvilPenguin.armref;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
