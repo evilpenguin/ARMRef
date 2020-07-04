@@ -402,7 +402,7 @@
 				CODE_SIGN_ENTITLEMENTS = ARMRef/Resource/ARM64.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H3YM9UX59B;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ARMRef/Source/PrefixHeader.pch";
 				INFOPLIST_FILE = ARMRef/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -425,7 +425,7 @@
 				CODE_SIGN_ENTITLEMENTS = ARMRef/Resource/ARM64.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H3YM9UX59B;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ARMRef/Source/PrefixHeader.pch";
 				INFOPLIST_FILE = ARMRef/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
