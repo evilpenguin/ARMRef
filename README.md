@@ -12,7 +12,7 @@ Required
 - iPadOS 13+
 - macOS 10.15+
 
-ARM Version
+ARM Versions
 ----------
 - v8.5a
 
