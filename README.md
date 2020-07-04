@@ -10,7 +10,7 @@ Required
 
 Shout-out
 ----------
-- ‪[@jamiebishop123‬](https://twitter.com/@jamiebishop123‬‬)
+- ‪[@jamiebishop123‬](https://twitter.com/jamiebishop123‬‬)
 
 Suggested
 ----------
