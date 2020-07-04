@@ -10,7 +10,9 @@ Required
 
 Shout-out
 ----------
-- ‪[@jamiebishop123‬](https://twitter.com/jamiebishop123‬‬)
+[1.1]: http://i.imgur.com/tXSoThF.png (twitter icon with padding)
+[1]: http://www.twitter.com/jamiebishop123
+- @jamiebishop123‬ [![alt text][1.1]][1]
 
 Suggested
 ----------
