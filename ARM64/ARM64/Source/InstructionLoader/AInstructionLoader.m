@@ -20,7 +20,7 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
 
 - (instancetype) init {
     if (self = [super init]) {
-        self.armVersion = @"ARMv8";
+        self.armVersion = @"ARMv8.5a";
         
         [self _load];
     }

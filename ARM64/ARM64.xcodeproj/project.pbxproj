@@ -13,7 +13,7 @@
 		A9A6CEA324A9355000C738BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEA224A9355000C738BD /* main.m */; };
 		A9A6CEB024A9469300C738BD /* AInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEAF24A9469300C738BD /* AInstruction.m */; };
 		A9A6CEB324A946D900C738BD /* AInstructionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB224A946D900C738BD /* AInstructionLoader.m */; };
-		A9A6CEB424A9488600C738BD /* ARMv8.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEAC24A9450100C738BD /* ARMv8.json */; };
+		A9A6CEB424A9488600C738BD /* ARMv8.5a.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEAC24A9450100C738BD /* ARMv8.5a.json */; };
 		A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB724A94F4500C738BD /* ACollectionView.m */; };
 		A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBA24A94FF000C738BD /* ACollectionViewDataHandle.m */; };
 		A9A6CEBE24A950DA00C738BD /* ACollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBD24A950DA00C738BD /* ACollectionViewCell.m */; };
@@ -33,7 +33,7 @@
 		A9A6CE9C24A9355000C738BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A6CEA124A9355000C738BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9A6CEA224A9355000C738BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A9A6CEAC24A9450100C738BD /* ARMv8.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ARMv8.json; sourceTree = "<group>"; };
+		A9A6CEAC24A9450100C738BD /* ARMv8.5a.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ARMv8.5a.json; sourceTree = "<group>"; };
 		A9A6CEAE24A9469300C738BD /* AInstruction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstruction.h; sourceTree = "<group>"; };
 		A9A6CEAF24A9469300C738BD /* AInstruction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AInstruction.m; sourceTree = "<group>"; };
 		A9A6CEB124A946D900C738BD /* AInstructionLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstructionLoader.h; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		A9A6CEE424AFF6CB00C738BD /* References */ = {
 			isa = PBXGroup;
 			children = (
-				A9A6CEAC24A9450100C738BD /* ARMv8.json */,
+				A9A6CEAC24A9450100C738BD /* ARMv8.5a.json */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A6CEB424A9488600C738BD /* ARMv8.json in Resources */,
+				A9A6CEB424A9488600C738BD /* ARMv8.5a.json in Resources */,
 				A9A6CE9D24A9355000C738BD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
