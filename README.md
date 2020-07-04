@@ -6,6 +6,10 @@
 <img src="https://github.com/evilpenguin/ARMRef/blob/master/icons/icon_60pt%402x.png" width="100" height="100" align="center" />
 An iOS, iPadOS, and macOS application reference manual for ARM assembly instructions
 
+Contribution
+--------
+- Please contribute to this! Put in PRs for any features you'd like to see. Let's make this a community driven tool.
+
 Required
 ----------
 - iOS 13+
