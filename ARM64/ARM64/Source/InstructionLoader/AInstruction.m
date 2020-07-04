@@ -13,6 +13,20 @@
 
 #pragma mark - AInstruction
 
+- (instancetype) initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
+        self.mnemonic = dictionary[@"mnemonic"];
+        self.shortDesc = dictionary[@"short_desc"];
+        self.fullDesc = dictionary[@"full_desc"];
+        self.symbols = dictionary[@"symbols"];
+        self.syntax = dictionary[@"syntax"];
+        self.decode = dictionary[@"decode"];
+        self.operation = dictionary[@"operation"];
+    }
+    
+    return self;;
+}
+
 - (NSString *) description {
     NSMutableString *desc = super.description.mutableCopy;
 

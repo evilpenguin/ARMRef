@@ -80,16 +80,7 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
 - (void) _parsedArrayToInstructiions:(NSArray<NSDictionary *> *)array {
     // Create
     for (NSDictionary *instructionDict in array) {
-        AInstruction *instruction = [[AInstruction alloc] init];
-        instruction.mnemonic = instructionDict[@"mnemonic"];
-        
-        instruction.shortDesc = instructionDict[@"short_desc"];
-        instruction.fullDesc = instructionDict[@"full_desc"];
-        instruction.symbols = instructionDict[@"symbol"];
-        instruction.syntax = instructionDict[@"syntax"];
-        instruction.decode = instructionDict[@"decode"];
-        instruction.operation = instructionDict[@"operation"];
-        
+        AInstruction *instruction = [[AInstruction alloc] initWithDictionary:instructionDict];
         [self.allInstructions addObject:instruction];
     }
     
