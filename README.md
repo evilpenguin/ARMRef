@@ -8,7 +8,9 @@ An iOS, iPadOS, and macOS application reference manual for ARM assembly instruct
 
 Contribution
 --------
-- Please contribute to this! Put in PRs for any features you'd like to see. Let's make this a community driven tool.
+- Please contribute to this! 
+- Put in PRs for any features you'd like to see. 
+- Let's make this a community driven tool.
 
 Required
 ----------
