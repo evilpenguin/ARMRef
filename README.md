@@ -12,11 +12,6 @@ Required
 - iPadOS 13+
 - macOS 10.15+
 
-Coming
-----------
- - Android
- - ARM Thumb
- 
 ARM Versions
 ----------
 - v8.5a
@@ -35,7 +30,12 @@ Suggested
 - Enjoy :)
 - Contribute!
 - Follow me [![alt text][1.1]][2]
+- ARM Exploration Tools https://developer.arm.com/architectures/cpu-architecture/a-profile/exploration-tools
 
+Coming
+----------
+ - Android
+ - ARM Thumb
 
 Screenshot
 ----------
