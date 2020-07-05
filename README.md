@@ -43,7 +43,7 @@ Coming
  - Android
  - ARM Thumb
  
-Beta Tests 
+Beta Testers 
 ----------
 - https://testflight.apple.com/join/imOBqKeN
 
