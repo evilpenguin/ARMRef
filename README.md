@@ -42,6 +42,10 @@ Coming
 ----------
  - Android
  - ARM Thumb
+ 
+Beta Tests 
+----------
+- https://testflight.apple.com/join/imOBqKeN
 
 Screenshot
 ----------
