@@ -27,51 +27,85 @@ import json
 from pathlib import Path
 from lxml import etree
 
-def _parse(atPath):
-    paths = [pth for pth in Path("ref").iterdir() if pth.suffix == ".xml"]
-    decoded = []
+def _node_text(node):
+    result = ""
 
+    if node.text:
+        result = node.text
+
+    for child in node:
+        if child.tail is not None:
+            result += child.tail
+
+    return result.strip()
+
+def _parse(atPath):
+    dictionary = []
+
+    # Paths
+    paths = [pth for pth in Path(atPath).iterdir() if pth.suffix == ".xml"]
+    
+    # Loop
     for path in paths:
         with open(path) as fd:
-            root = etree.parse(fd).getroot()
-            out = {}
-
-            heading = root.find("heading")
-            if heading is None: 
-                continue
-            out["mnemonic"] = heading.text
-
-            brief = root.find("desc/brief/para")
-            if brief is not None:
-                out["short_desc"] = "".join(brief.itertext())
-                full_desc = ["".join(x.itertext()) for x in root.iterfind("desc/authored/para") if x.text is not None]
-                out["full_desc"] = "\n\n".join(full_desc)
-            else:
-                out["short_desc"] = root.find("desc/brief").text
+            instruction = {}
             
-            out["syntax"] = []
+            # Root
+            root = etree.parse(fd).getroot()
+
+            # Mnemonic
+            heading = root.xpath("heading")
+            if heading is None or len(heading) == 0: continue
+            instruction["mnemonic"] = _node_text(heading[0])
+
+            # Short desc
+            brief = root.xpath("desc/brief/para")
+            if brief is None or len(brief) == 0: brief = root.xpath("desc/brief")
+            if brief and len(brief) > 0:
+                instruction["short_desc"] = _node_text(brief[0])
+
+            # Full desc
+            authored = root.xpath("desc/authored/para")
+            if authored is None or len(authored) == 0: authored = root.xpath("desc/description/para")
+            if authored and len(authored) > 0:
+                instruction["full_desc"] = _node_text(authored[0])
+
+            # Syntax
+            instruction["syntax"] = []
             for asmtemplate in root.iterfind("classes/iclass/encoding/asmtemplate"):
                 syntax_text = "".join(asmtemplate.itertext()).strip()
                 label = asmtemplate.getparent().attrib["label"].strip()
-                out["syntax"].append(f"{syntax_text}\t; {label} variant")
+                instruction["syntax"].append(f"{syntax_text}\t; {label}")
 
-            out["symbols"] = []
-            for intro in root.iterfind(".#explanation/account/intro/para"):
-                intro_text = "".join(intro.itertext())
-                register = f"<{intro.getparent().getparent().attrib['encodedin']}>"
-                out["symbols"].append(f"{register}\n{intro_text}")
+            # Symbols
+            instruction["symbols"] = []
+            for explanations in root.iterfind("explanations/explanation"):
+                symbol = ""
+                intro = ""
 
-            decode_code = root.find(".#pstext[@rep_section='decode']")
-            if decode_code is not None:
-                out["decode"] = "".join(decode_code.itertext())
+                for explanation in explanations.getchildren():
+                    if "symbol" in explanation.tag:
+                        symbol = _node_text(explanation)
+                    elif "account" in explanation.tag:
+                        intro = _node_text(explanation.xpath("intro/para")[0])
 
-            execute_code = root.find(".#pstext[@rep_section='execute']")
-            if execute_code is not None:
-                out["operation"] = "".join(execute_code.itertext())
+                instruction["symbols"].append(f"{symbol}\n{intro}")
 
-            decoded.append(out)
+            # Decode
+            decode = root.xpath("classes/iclass/ps_section/ps/pstext")
+            if decode and len(decode) > 0:
+                instruction["decode"] = "".join(decode[0].itertext()).strip()
 
-    return decoded
+            # Operation
+            execute = root.xpath("ps_section/ps/pstext")
+            if execute and len(execute) > 0:
+                instruction["operation"] = "".join(execute[0].itertext()).strip()
+
+            # Add instruction
+            if len(instruction) > 0:
+                dictionary.append(instruction)
+
+    return dictionary
 
 def _main():
     # Args
@@ -81,12 +115,12 @@ def _main():
     args = argParser.parse_args()
 
     # Parse
-    decoded = _parse(atPath=args.dir)
+    dictionary = _parse(atPath=args.dir)
 
     # Output
     if args.json:
         with open(args.json, "w") as json_file:
-            json_file.write(json.dumps(decoded))
+            json_file.write(json.dumps(dictionary))
     else:
         print(json.dumps(decoded))
 
