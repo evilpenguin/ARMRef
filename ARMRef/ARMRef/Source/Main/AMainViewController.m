@@ -27,6 +27,7 @@
 #import "ACollectionView.h"
 #import "ACollectionViewDataHandle.h"
 #import "AInstructionViewController.h"
+#import "AArchitectureViewController.h"
 
 @interface AMainViewController () <UISearchBarDelegate, ACollectionViewDelegatesTouchHandle>
 @property (nonatomic, weak) AInstructionLoader *loader;
@@ -44,9 +45,9 @@
 
 - (instancetype) initWithLoader:(AInstructionLoader *)loader {
     if (self = [super init]) {
-        self.title  = loader.armVersion;
-        self.loader = loader;
-        
+        self.loader                             = loader;
+        self.navigationItem.leftBarButtonItem   = [[UIBarButtonItem alloc] initWithTitle:@"Arch" style:UIBarButtonItemStylePlain target:self action:@selector(_changeArch:)];
+
         [NSNotificationCenter.defaultCenter addObserver:self
                                                selector:@selector(_loaderNotification:)
                                                    name:AInstructionLoaderFinishedNotificaton
@@ -56,6 +57,7 @@
                                                selector:@selector(_keyboardWillChangeFrameNotification:)
                                                    name:UIKeyboardWillChangeFrameNotification
                                                  object:nil];
+        
     }
     
     return self;
@@ -103,7 +105,21 @@
 
 #pragma mark - Private
 
+- (void) _changeArch:(UIBarButtonItem *)item {
+    AArchitectureViewController *viewController = [[AArchitectureViewController alloc] initWithLoader:self.loader];
+    
+    weakify(self);
+    viewController.pickCompletion = ^(NSString *arch) {
+        strongify(self);
+        
+        [self _showNoDataStyle:YES];
+    };
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
 - (void) _loaderNotification:(NSNotification *)notification {
+    self.title = self.loader.architecture;
     [self _updateDataAndLoaderWithString:nil];
 }
 
@@ -116,6 +132,7 @@
 }
 
 - (void) _showNoDataStyle:(BOOL)show {
+    self.title = (show ? nil : self.loader.architecture);
     self.noDataLabel.alpha = (show ? 1.0f : 0.0f);
     self.collectionView.alpha = (show ? 0.0f : 1.0f);
 }
@@ -140,6 +157,8 @@
         _searchBar.searchTextField.backgroundColor = UIColor.whiteColor;
         _searchBar.searchTextField.tintColor = _searchBar.backgroundColor;
         _searchBar.searchTextField.textColor = _searchBar.backgroundColor;
+        _searchBar.searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _searchBar.searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     }
     
     return _searchBar;

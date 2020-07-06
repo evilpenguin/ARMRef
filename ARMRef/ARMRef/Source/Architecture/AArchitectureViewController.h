@@ -1,5 +1,5 @@
 //
-//  Defines.h
+//  AArchitectureViewController.h
 //
 //  Copyright (c) 2020 ARMRef (https://github.com/evilpenguin/ARMRef)
 //
@@ -21,31 +21,15 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#ifndef Defines_h
-#define Defines_h
+#import <UIKit/UIKit.h>
 
-// Weakify and Strongify
-#define weakify(var) \
-    __weak typeof(var) KPWeak_##var = var
+NS_ASSUME_NONNULL_BEGIN
 
-#define strongify(var) \
-    _Pragma("clang diagnostic push") \
-    _Pragma("clang diagnostic ignored \"-Wshadow\"") \
-    __strong typeof(var) var = KPWeak_##var \
-    _Pragma("clang diagnostic pop")
+@interface AArchitectureViewController : UITableViewController
+ @property (nonatomic, copy, nullable) void (^pickCompletion)(NSString *arch);
 
-// Dispatch main
-#define dispatch_async_main(block) \
-    if (block) dispatch_async(dispatch_get_main_queue(), block)
+- (instancetype) initWithLoader:(AInstructionLoader *)loader;
 
-#define dispatch_async_global(block) \
-    if (block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+@end
 
-// Block
-#define BlockSafetyCall(block) \
-    if (block) block()
-
-#define BlockSafetyCallWithArgs(block, ...) \
-    if (block) block(__VA_ARGS__)
-
-#endif /* Defines_h */
+NS_ASSUME_NONNULL_END

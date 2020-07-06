@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A99EA5C924B29F0E007744F1 /* ARMv8.6a.json in Resources */ = {isa = PBXBuildFile; fileRef = A99EA5C724B29F0E007744F1 /* ARMv8.6a.json */; };
+		A99EA5CA24B29F0E007744F1 /* ARMv8.6a (32-bit).json in Resources */ = {isa = PBXBuildFile; fileRef = A99EA5C824B29F0E007744F1 /* ARMv8.6a (32-bit).json */; };
+		A99EA5CD24B2A51B007744F1 /* AArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99EA5CC24B2A51B007744F1 /* AArchitectureViewController.m */; };
 		A9A6CE9224A9354F00C738BD /* AAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CE9124A9354F00C738BD /* AAppDelegate.m */; };
 		A9A6CE9824A9354F00C738BD /* AMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CE9724A9354F00C738BD /* AMainViewController.m */; };
 		A9A6CE9D24A9355000C738BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CE9C24A9355000C738BD /* Assets.xcassets */; };
 		A9A6CEA324A9355000C738BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEA224A9355000C738BD /* main.m */; };
 		A9A6CEB024A9469300C738BD /* AInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEAF24A9469300C738BD /* AInstruction.m */; };
 		A9A6CEB324A946D900C738BD /* AInstructionLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB224A946D900C738BD /* AInstructionLoader.m */; };
-		A9A6CEB424A9488600C738BD /* ARMv8.5a.json in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CEAC24A9450100C738BD /* ARMv8.5a.json */; };
 		A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEB724A94F4500C738BD /* ACollectionView.m */; };
 		A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBA24A94FF000C738BD /* ACollectionViewDataHandle.m */; };
 		A9A6CEBE24A950DA00C738BD /* ACollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CEBD24A950DA00C738BD /* ACollectionViewCell.m */; };
@@ -25,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A99EA5C724B29F0E007744F1 /* ARMv8.6a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ARMv8.6a.json; sourceTree = "<group>"; };
+		A99EA5C824B29F0E007744F1 /* ARMv8.6a (32-bit).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ARMv8.6a (32-bit).json"; sourceTree = "<group>"; };
+		A99EA5CB24B2A51B007744F1 /* AArchitectureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AArchitectureViewController.h; sourceTree = "<group>"; };
+		A99EA5CC24B2A51B007744F1 /* AArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AArchitectureViewController.m; sourceTree = "<group>"; };
 		A9A6CE8D24A9354F00C738BD /* ARMRef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARMRef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A6CE9024A9354F00C738BD /* AAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAppDelegate.h; sourceTree = "<group>"; };
 		A9A6CE9124A9354F00C738BD /* AAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAppDelegate.m; sourceTree = "<group>"; };
@@ -33,7 +39,6 @@
 		A9A6CE9C24A9355000C738BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A6CEA124A9355000C738BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9A6CEA224A9355000C738BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A9A6CEAC24A9450100C738BD /* ARMv8.5a.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ARMv8.5a.json; sourceTree = "<group>"; };
 		A9A6CEAE24A9469300C738BD /* AInstruction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstruction.h; sourceTree = "<group>"; };
 		A9A6CEAF24A9469300C738BD /* AInstruction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AInstruction.m; sourceTree = "<group>"; };
 		A9A6CEB124A946D900C738BD /* AInstructionLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstructionLoader.h; sourceTree = "<group>"; };
@@ -70,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A99EA5CE24B2A520007744F1 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				A99EA5CB24B2A51B007744F1 /* AArchitectureViewController.h */,
+				A99EA5CC24B2A51B007744F1 /* AArchitectureViewController.m */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
 		A9A6CE8424A9354F00C738BD = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +118,7 @@
 				A9A6CEE224AFE40500C738BD /* PrefixHeader.pch */,
 				A9A6CE9024A9354F00C738BD /* AAppDelegate.h */,
 				A9A6CE9124A9354F00C738BD /* AAppDelegate.m */,
+				A99EA5CE24B2A520007744F1 /* Architecture */,
 				A9A6CED724AFA16000C738BD /* Categories */,
 				A9A6CEB524A94F2D00C738BD /* CollectionView */,
 				A9A6CEAA24A9367D00C738BD /* Main */,
@@ -191,7 +206,8 @@
 		A9A6CEE424AFF6CB00C738BD /* References */ = {
 			isa = PBXGroup;
 			children = (
-				A9A6CEAC24A9450100C738BD /* ARMv8.5a.json */,
+				A99EA5C724B29F0E007744F1 /* ARMv8.6a.json */,
+				A99EA5C824B29F0E007744F1 /* ARMv8.6a (32-bit).json */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -254,8 +270,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A99EA5CA24B29F0E007744F1 /* ARMv8.6a (32-bit).json in Resources */,
+				A99EA5C924B29F0E007744F1 /* ARMv8.6a.json in Resources */,
 				A9A6CEE824B0373C00C738BD /* LaunchScreen.storyboard in Resources */,
-				A9A6CEB424A9488600C738BD /* ARMv8.5a.json in Resources */,
 				A9A6CE9D24A9355000C738BD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +289,7 @@
 				A9A6CEB024A9469300C738BD /* AInstruction.m in Sources */,
 				A9A6CEE024AFD7D300C738BD /* ANavigationController.m in Sources */,
 				A9A6CE9824A9354F00C738BD /* AMainViewController.m in Sources */,
+				A99EA5CD24B2A51B007744F1 /* AArchitectureViewController.m in Sources */,
 				A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */,
 				A9A6CE9224A9354F00C738BD /* AAppDelegate.m in Sources */,
 				A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */,
@@ -410,7 +428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EvilPenguin.armref;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -433,7 +451,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.EvilPenguin.armref;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;

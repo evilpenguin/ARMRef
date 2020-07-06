@@ -28,6 +28,7 @@
 NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFinishedNotificaton";
 
 @interface AInstructionLoader ()
+@property (nonatomic, strong) NSString *architecture;
 @property (nonatomic, strong) NSMutableArray<AInstruction *> *allInstructions;
 
 @end
@@ -36,12 +37,37 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
 
 - (instancetype) init {
     if (self = [super init]) {
-        self.armVersion = @"ARMv8.5a";
-        
-        [self _load];
+        // Load 64bit first :)
+        [self loadArchitecture:AInstructionLoader.supportedArchitecture.firstObject];
     }
     
     return self;
+}
+
+#pragma mark - Public
+
+- (void) loadArchitecture:(NSString *)architecture {
+    if (architecture.length) {
+        self.architecture = architecture;
+        
+        [self _load];
+    }
+}
+
+#pragma mark - Public class
+
++ (NSArray<NSString *> *) supportedArchitecture {
+    static dispatch_once_t onceToken;
+    static NSArray *versions;
+    
+    dispatch_once(&onceToken, ^{
+        versions = @[
+            @"ARMv8.6a",
+            @"ARMv8.6a (32-bit)"
+        ];
+    });
+    
+    return versions;
 }
 
 #pragma mark - Private
@@ -51,7 +77,7 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
     dispatch_async_global(^ {
         strongify(self);
         
-        NSString *jsonFile = [NSBundle.mainBundle pathForResource:self.armVersion ofType:@"json"];
+        NSString *jsonFile = [NSBundle.mainBundle pathForResource:self.architecture ofType:@"json"];
         if (jsonFile.length) {
             NSData *jsonData = [NSData dataWithContentsOfFile:jsonFile];
             if (jsonData.length) {
@@ -94,6 +120,9 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
 #pragma mark - Private
 
 - (void) _parsedArrayToInstructiions:(NSArray<NSDictionary *> *)array {
+    // Clear
+    [self.allInstructions removeAllObjects];
+    
     // Create
     for (NSDictionary *instructionDict in array) {
         AInstruction *instruction = [[AInstruction alloc] initWithDictionary:instructionDict];

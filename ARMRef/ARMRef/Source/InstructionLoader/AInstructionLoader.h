@@ -30,10 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXTERN NSString *const AInstructionLoaderFinishedNotificaton;
 
 @interface AInstructionLoader : NSObject
-@property (nonatomic, strong, nullable) NSString *armVersion;
+@property (nonatomic, strong, readonly) NSString *architecture;
 @property (nonatomic, strong, nullable) NSString *filerString;
 
+- (void) loadArchitecture:(NSString *)architecture;
 - (NSArray<AInstruction *> *) instructions;
++ (NSArray<NSString *> *) supportedArchitecture;
 
 @end
 

@@ -20,7 +20,8 @@ Required
 
 ARM Versions
 ----------
-- v8.5a
+- v8.6a
+- v8.6a (32-bit)
 - Grab more from (https://developer.arm.com/architectures/cpu-architecture/a-profile/exploration-tools)
 
 How to
@@ -41,8 +42,7 @@ Suggested
 Coming
 ----------
  - Android
- - ARM Thumb
-
+ 
 Screenshot
 ----------
 ![All](all.png)
