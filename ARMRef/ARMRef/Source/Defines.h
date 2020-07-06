@@ -41,4 +41,11 @@
 #define dispatch_async_global(block) \
     if (block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 
+// Block
+#define BlockSafetyCall(block) \
+    if (block) block()
+
+#define BlockSafetyCallWithArgs(block, ...) \
+    if (block) block(__VA_ARGS__)
+
 #endif /* Defines_h */
