@@ -157,6 +157,8 @@
         _searchBar.searchTextField.backgroundColor = UIColor.whiteColor;
         _searchBar.searchTextField.tintColor = _searchBar.backgroundColor;
         _searchBar.searchTextField.textColor = _searchBar.backgroundColor;
+        _searchBar.searchTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _searchBar.searchTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     }
     
     return _searchBar;
