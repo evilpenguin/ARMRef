@@ -43,10 +43,6 @@ Coming
 ----------
  - Android
  
-Beta Testers 
-----------
-- https://testflight.apple.com/join/imOBqKeN
-
 Screenshot
 ----------
 ![All](all.png)
