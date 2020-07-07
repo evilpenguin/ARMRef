@@ -75,6 +75,7 @@
     
     if (![self.loader.architecture isEqualToString:arch]) {
         BlockSafetyCallWithArgs(self.pickCompletion, arch);
+        
         [self.loader loadArchitecture:arch];
     }
     

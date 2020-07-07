@@ -36,7 +36,7 @@
 
 - (nonnull __kindof UICollectionViewCell *) collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
-    cell.instruction = self.instructions[indexPath.row];
+    cell.instruction = safetyObjectAtIndex(self.instructions, indexPath.row);
 
     return cell;
 }
@@ -65,7 +65,7 @@
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
-    cell.instruction = self.instructions[indexPath.row];
+    cell.instruction = safetyObjectAtIndex(self.instructions, indexPath.row);
     
     CGFloat maxSize = [cell maxSizeForInstruction:self.instructions[indexPath.row] withWidth:collectionView.bounds.size.width - 20.0f];
     

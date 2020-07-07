@@ -48,4 +48,12 @@
 #define BlockSafetyCallWithArgs(block, ...) \
     if (block) block(__VA_ARGS__)
 
+// Array
+#define safetyObjectAtIndex(array, index) \
+    (array.count > index ? array[index] : nil)
+
+#define safetyPointerObjectAtIndex(array, index) \
+    (array.count > index ? [array pointerAtIndex:index] : nil)
+
+
 #endif /* Defines_h */

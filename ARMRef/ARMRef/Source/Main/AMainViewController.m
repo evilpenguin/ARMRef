@@ -104,6 +104,7 @@
         strongify(self);
         
         [self _showNoDataStyle:YES];
+        [self.collectionView setContentOffset:CGPointZero animated:NO];
     };
     
     [self.navigationController pushViewController:viewController animated:YES];
