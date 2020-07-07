@@ -30,16 +30,39 @@
 #pragma mark - ACollectionView
 
 - (instancetype) init {
-    if (self = [super initWithFrame:CGRectZero collectionViewLayout:UICollectionViewFlowLayout.new]) {
+    if (self = [super initWithFrame:CGRectZero collectionViewLayout:ACollectionView._layout]) {
         self.backgroundColor                            = [UIColor colorFromHex:0x333e48];
         self.contentInset                               = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
         self.alwaysBounceVertical                       = YES;
         self.translatesAutoresizingMaskIntoConstraints  = NO;
         
         [self registerClass:ACollectionViewCell.class forCellWithReuseIdentifier:ACollectionViewCell.identifier];
+        
+        [NSNotificationCenter.defaultCenter addObserver:self
+                                               selector:@selector(_keyboardWillChangeFrameNotification:)
+                                                   name:UIKeyboardWillChangeFrameNotification
+                                                 object:nil];
     }
     
     return self;
+}
+
+#pragma mark - Private
+
++ (UICollectionViewFlowLayout *) _layout {
+    UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
+    layout.sectionInset = UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f);
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.sectionInsetReference = UICollectionViewFlowLayoutSectionInsetFromContentInset;
+    
+    return layout;
+}
+
+- (void) _keyboardWillChangeFrameNotification:(NSNotification *)notification {
+    CGRect endKeyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    
+    CGFloat bottomInset = (endKeyboardFrame.origin.y > self.bounds.size.height ? 10.0f : endKeyboardFrame.size.height + 10.0f);
+    self.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, bottomInset, 0.0f);
 }
 
 @end

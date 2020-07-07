@@ -54,11 +54,11 @@
     [super layoutSubviews];
     
     // Top label
-    CGSize topSize = [self.topLabel sizeThatFits:CGSizeMake(self.bounds.size.width - 10.0f, CGFLOAT_MAX)];
+    CGSize topSize = [self.topLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - 20.0f, CGFLOAT_MAX)];
     self.topLabel.frame = CGRectMake(10.0f, 9.0f, topSize.width, topSize.height);
 
     // Bottom label
-    CGSize bottomSize = [self.bottomLabel sizeThatFits:CGSizeMake(self.bounds.size.width - 10.0f, CGFLOAT_MAX)];
+    CGSize bottomSize = [self.bottomLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - 20.0f, CGFLOAT_MAX)];
     self.bottomLabel.frame = CGRectMake(10.0f, CGRectGetMaxY(self.topLabel.frame), bottomSize.width, bottomSize.height);
 }
 
@@ -83,12 +83,12 @@
 - (CGFloat) maxSizeForInstruction:(AInstruction *)instruction withWidth:(CGFloat)width {
     self.topLabel.text = instruction.mnemonic;
     self.bottomLabel.text = instruction.shortDesc;
+    
+    CGFloat padding = 18.0f;
+    CGSize topSize = [self.topLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
+    CGSize bottomSize = [self.bottomLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
 
-    CGFloat finalWidth = width - 10.0f;
-    CGSize topSize = [self.topLabel sizeThatFits:CGSizeMake(finalWidth, CGFLOAT_MAX)];
-    CGSize bottomSize = [self.bottomLabel sizeThatFits:CGSizeMake(finalWidth, CGFLOAT_MAX)];
-
-    return topSize.height + bottomSize.height + 18.0f;
+    return topSize.height + bottomSize.height + padding;
 }
 
 #pragma mark - Setters

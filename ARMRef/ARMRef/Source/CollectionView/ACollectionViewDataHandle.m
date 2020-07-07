@@ -67,17 +67,17 @@
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
     cell.instruction = self.instructions[indexPath.row];
     
-    CGFloat maxSize = [cell maxSizeForInstruction:self.instructions[indexPath.row] withWidth:collectionView.bounds.size.width];
+    CGFloat maxSize = [cell maxSizeForInstruction:self.instructions[indexPath.row] withWidth:collectionView.bounds.size.width - 20.0f];
     
-    return CGSizeMake(collectionView.bounds.size.width, maxSize);
+    return CGSizeMake(collectionView.bounds.size.width - 20.0f, maxSize);
 }
 
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsZero;
+    return UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f);
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 4.0f;
+    return 10.0f;
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {

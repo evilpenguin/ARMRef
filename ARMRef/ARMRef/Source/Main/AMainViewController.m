@@ -35,7 +35,6 @@
 @property (nonatomic, strong) UILabel *noDataLabel;
 @property (nonatomic, strong) ACollectionView *collectionView;
 @property (nonatomic, strong) ACollectionViewDataHandle *collectionViewDataHandle;
-@property (nonatomic, assign) CGRect keyboardFrame;
 
 @end
 
@@ -52,12 +51,6 @@
                                                selector:@selector(_loaderNotification:)
                                                    name:AInstructionLoaderFinishedNotificaton
                                                  object:nil];
-        
-        [NSNotificationCenter.defaultCenter addObserver:self
-                                               selector:@selector(_keyboardWillChangeFrameNotification:)
-                                                   name:UIKeyboardWillChangeFrameNotification
-                                                 object:nil];
-        
     }
     
     return self;
@@ -92,12 +85,10 @@
     self.noDataLabel.frame = self.view.bounds;
     
     // Collection view
-    CGFloat padding = (!leftRightInset ? 8.0f : 0.0f);
-    CGRect collectionViewFrame = CGRectMake(self.view.safeAreaInsets.left + padding,
+    CGRect collectionViewFrame = CGRectMake(self.view.safeAreaInsets.left,
                                             CGRectGetMaxY(self.searchBar.frame) + 5.0f,
-                                            self.view.bounds.size.width - (leftRightInset + (padding * 2.0f)),
+                                            self.view.bounds.size.width - leftRightInset,
                                             self.view.bounds.size.height - (CGRectGetMaxY(self.searchBar.frame) + 5.0f));
-    if (self.searchBar.isFirstResponder) collectionViewFrame.size.height -= self.keyboardFrame.size.height;
 
     self.collectionView.frame = collectionViewFrame;
     [self.collectionView.collectionViewLayout invalidateLayout];
@@ -135,12 +126,6 @@
     self.title = (show ? nil : self.loader.architecture);
     self.noDataLabel.alpha = (show ? 1.0f : 0.0f);
     self.collectionView.alpha = (show ? 0.0f : 1.0f);
-}
-
-- (void) _keyboardWillChangeFrameNotification:(NSNotification *)notification {
-    self.keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    [self.view setNeedsLayout];
 }
 
 #pragma mark - Lazy
