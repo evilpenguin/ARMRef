@@ -33,6 +33,7 @@
     if (self = [super initWithFrame:CGRectZero collectionViewLayout:ACollectionView._layout]) {
         self.backgroundColor                            = [UIColor colorFromHex:0x333e48];
         self.contentInset                               = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
+        self.scrollIndicatorInsets                      = self.contentInset;
         self.alwaysBounceVertical                       = YES;
         self.translatesAutoresizingMaskIntoConstraints  = NO;
         
@@ -63,6 +64,7 @@
     
     CGFloat bottomInset = (endKeyboardFrame.origin.y > self.bounds.size.height ? 10.0f : endKeyboardFrame.size.height + 10.0f);
     self.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, bottomInset, 0.0f);
+    self.scrollIndicatorInsets = self.contentInset;
 }
 
 @end
