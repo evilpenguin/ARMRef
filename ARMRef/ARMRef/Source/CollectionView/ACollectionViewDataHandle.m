@@ -36,7 +36,6 @@
 
 - (nonnull __kindof UICollectionViewCell *) collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
-    cell.instruction = safetyObjectAtIndex(self.instructions, indexPath.row);
 
     return cell;
 }
@@ -46,6 +45,10 @@
 }
 
 #pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(ACollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    cell.instruction = safetyObjectAtIndex(self.instructions, indexPath.row);
+}
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.handleTouch collectioinViewHandle:self didTouchInstruction:self.instructions[indexPath.row]];
@@ -64,10 +67,8 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ACollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ACollectionViewCell.identifier forIndexPath:indexPath];
-    cell.instruction = safetyObjectAtIndex(self.instructions, indexPath.row);
-    
-    CGFloat maxSize = [cell maxSizeForInstruction:self.instructions[indexPath.row] withWidth:collectionView.bounds.size.width - 20.0f];
+    CGFloat maxSize = [ACollectionViewCell heightForInstruction:safetyObjectAtIndex(self.instructions, indexPath.row)
+                                                      withWidth:collectionView.bounds.size.width - 20.0f];
     
     return CGSizeMake(collectionView.bounds.size.width - 20.0f, maxSize);
 }

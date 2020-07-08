@@ -53,13 +53,15 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     
+    CGFloat width = self.bounds.size.width;
+    
     // Top label
-    CGSize topSize = [self.topLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - 20.0f, CGFLOAT_MAX)];
-    self.topLabel.frame = CGRectMake(10.0f, 9.0f, topSize.width, topSize.height);
+    CGRect topFrame = [self.class _topLabelFrameForString:self.topLabel.text withWidth:width];
+    self.topLabel.frame = CGRectMake(10.0f, 9.0f, topFrame.size.width, topFrame.size.height);
 
     // Bottom label
-    CGSize bottomSize = [self.bottomLabel sizeThatFits:CGSizeMake(self.contentView.bounds.size.width - 20.0f, CGFLOAT_MAX)];
-    self.bottomLabel.frame = CGRectMake(10.0f, CGRectGetMaxY(self.topLabel.frame), bottomSize.width, bottomSize.height);
+    CGRect bottomFrame = [self.class _bottomLabelFrameForString:self.bottomLabel.text withWidth:width];
+    self.bottomLabel.frame = CGRectMake(10.0f, CGRectGetMaxY(self.topLabel.frame), bottomFrame.size.width, bottomFrame.size.height);
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -80,15 +82,40 @@
 
 #pragma mark - Public methods
 
-- (CGFloat) maxSizeForInstruction:(AInstruction *)instruction withWidth:(CGFloat)width {
-    self.topLabel.text = instruction.mnemonic;
-    self.bottomLabel.text = instruction.shortDesc;
-    
++ (CGFloat) heightForInstruction:(AInstruction *)instruction withWidth:(CGFloat)width {
     CGFloat padding = 18.0f;
-    CGSize topSize = [self.topLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
-    CGSize bottomSize = [self.bottomLabel sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)];
+    CGRect topFrame = [self _topLabelFrameForString:instruction.mnemonic withWidth:width];
+    CGRect bottomFrame = [self _bottomLabelFrameForString:instruction.shortDesc withWidth:width];
 
-    return topSize.height + bottomSize.height + padding;
+    return topFrame.size.height + bottomFrame.size.height + padding;
+}
+
+#pragma mark - Private class
+
++ (CGRect) _topLabelFrameForString:(NSString *)string withWidth:(CGFloat)width {
+    return  [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                              attributes:self._topLabelAttributes
+                                 context:nil];
+}
+
++ (NSDictionary *) _topLabelAttributes {
+    return @{
+        NSFontAttributeName: [UIFont systemFontOfSize:20.0f weight:UIFontWeightBold]
+    };
+}
+
++ (CGRect) _bottomLabelFrameForString:(NSString *)string withWidth:(CGFloat)width {
+    return  [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                 options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                              attributes:self._bottomLabelAttributes
+                                 context:nil];
+}
+
++ (NSDictionary *) _bottomLabelAttributes {
+    return @{
+        NSFontAttributeName: [UIFont systemFontOfSize:14.0f weight:UIFontWeightRegular]
+    };
 }
 
 #pragma mark - Setters
@@ -102,8 +129,8 @@
 - (void) setInstruction:(AInstruction *)instruction {
     _instruction = instruction;
     
-    self.topLabel.text = instruction.mnemonic;
-    self.bottomLabel.text = instruction.shortDesc;
+    self.topLabel.attributedText = [[NSAttributedString alloc] initWithString:instruction.mnemonic attributes:self.class._topLabelAttributes];
+    self.bottomLabel.attributedText = [[NSAttributedString alloc] initWithString:instruction.shortDesc attributes:self.class._bottomLabelAttributes];
     
     [self setNeedsLayout];
 }
@@ -114,7 +141,6 @@
     if (!_topLabel) {
         _topLabel = [[UILabel alloc] init];
         _topLabel.backgroundColor = UIColor.clearColor;
-        _topLabel.font = [UIFont systemFontOfSize:20.0f weight:UIFontWeightBold];
         _topLabel.textColor = UIColor.blackColor;
         _topLabel.numberOfLines = 2;
     }
@@ -126,7 +152,6 @@
     if (!_bottomLabel) {
         _bottomLabel = [[UILabel alloc] init];
         _bottomLabel.backgroundColor = UIColor.clearColor;
-        _bottomLabel.font = [UIFont systemFontOfSize:14.0f weight:UIFontWeightRegular];
         _bottomLabel.textColor = UIColor.blackColor;
         _bottomLabel.numberOfLines = 0;
         _bottomLabel.lineBreakMode = NSLineBreakByWordWrapping;

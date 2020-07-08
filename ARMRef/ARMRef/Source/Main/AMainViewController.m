@@ -190,10 +190,10 @@
 }
 
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [self _updateDataAndLoaderWithString:nil];
-    
     searchBar.text = nil;
     [searchBar resignFirstResponder];
+    
+    [self _updateDataAndLoaderWithString:nil];
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {

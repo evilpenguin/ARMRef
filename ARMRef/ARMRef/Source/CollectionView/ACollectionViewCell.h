@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, class) NSString *identifier;
 @property (nonatomic, weak) AInstruction *instruction;
 
-- (CGFloat) maxSizeForInstruction:(AInstruction *)instruction withWidth:(CGFloat)width;
++ (CGFloat) heightForInstruction:(AInstruction *)instruction withWidth:(CGFloat)width;
 
 @end
 
