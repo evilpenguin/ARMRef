@@ -16,7 +16,7 @@ Testing
 --------
 - Application is on Apple's TestFlight
 - If you want TestFlight access just ping me on Twitter [![alt text][1.1]][2]
-- Will be submitting to full store soon enough
+- Application will be released in the AppStore
 
 Required
 ----------
