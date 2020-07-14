@@ -139,6 +139,7 @@
         _searchBar.backgroundImage = UIImage.new;
         _searchBar.backgroundImage = UIImage.new;
         _searchBar.tintColor = UIColor.whiteColor;
+        _searchBar.barTintColor = UIColor.whiteColor;
         _searchBar.delegate = self;
         _searchBar.showsCancelButton = YES;
         _searchBar.searchTextField.backgroundColor = UIColor.whiteColor;
