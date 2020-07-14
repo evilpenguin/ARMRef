@@ -12,6 +12,12 @@ Contribution
 - Put in PRs for any features you'd like to see. 
 - Let's make this a community driven tool.
 
+Testing
+--------
+- Application is on Apple's TestFlight
+- If you want TestFlight access just ping me on Twitter [![alt text][1.1]][2]
+- Application will be released in the AppStore
+
 Required
 ----------
 - iOS 13+
