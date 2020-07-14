@@ -68,8 +68,8 @@
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat maxSize = [ACollectionViewCell heightForInstruction:safetyObjectAtIndex(self.instructions, indexPath.row)
-                                                      withWidth:collectionView.bounds.size.width - 20.0f];
-    
+                                                      withWidth:collectionView.bounds.size.width - 40.0f];
+
     return CGSizeMake(collectionView.bounds.size.width - 20.0f, maxSize);
 }
 

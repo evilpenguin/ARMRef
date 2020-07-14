@@ -104,7 +104,6 @@
         strongify(self);
         
         [self _showNoDataStyle:YES];
-        [self.collectionView setContentOffset:CGPointZero animated:NO];
     };
     
     [self.navigationController pushViewController:viewController animated:YES];
@@ -117,8 +116,10 @@
 
 - (void) _updateDataAndLoaderWithString:(NSString *)string {
     self.loader.filerString = string;
+    
     self.collectionViewDataHandle.instructions = self.loader.instructions;
     [self.collectionView reloadData];
+    [self.collectionView setContentOffset:CGPointZero animated:NO];
     
     [self _showNoDataStyle:!self.collectionViewDataHandle.instructions.count];
 }

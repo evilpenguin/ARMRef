@@ -53,7 +53,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     
-    CGFloat width = self.bounds.size.width;
+    CGFloat width = self.bounds.size.width - 20.0f;
     
     // Top label
     CGRect topFrame = [self.class _topLabelFrameForString:self.topLabel.text withWidth:width];
