@@ -56,10 +56,12 @@
 
 - (void) removeAllObjects {
     [self.dict removeAllObjects];
+    [self.keys removeAllObjects];
 }
 
-- (void) removeObjectForKey:(id)aKey {
-    [self.dict removeObjectForKey:aKey];
+- (void) removeObjectForKey:(id)key {
+    [self.dict removeObjectForKey:key];
+    [self.keys removeObject:key];
 }
 
 - (id) objectForKey:(id)key {
@@ -68,19 +70,23 @@
 
 - (id) objectForKeyedSubscript:(id)key {
     // Check for array
-    id object = [self.dict objectForKeyedSubscript:key];
-    if (!object) {
-        object = [NSMutableArray array];
+    if (key) {
+        id object = [self.dict objectForKeyedSubscript:key];
+        if (!object) {
+            object = [NSMutableArray array];
+            
+            // Add Array
+            self.dict[key] = object;
+            
+            // Keys
+            [self.keys addObject:key];
+            [self.keys sortUsingSelector:@selector(compare:)];
+        }
         
-        // Add Array
-        self.dict[key] = object;
-        
-        // Keys
-        [self.keys addObject:key];
-        [self.keys sortUsingSelector:@selector(compare:)];
+        return object;
     }
     
-    return object;
+    return nil;
 }
 
 #pragma mark - Public
