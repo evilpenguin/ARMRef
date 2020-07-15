@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AInstructions<KeyType, ObjectType> : NSMutableDictionary<KeyType, ObjectType>
 
 - (AInstruction *__nullable) instructionAtIndexPath:(NSIndexPath *)indexPath;
+- (void) sort;
 
 @end
 

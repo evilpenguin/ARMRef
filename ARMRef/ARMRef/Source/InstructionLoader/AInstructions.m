@@ -80,7 +80,6 @@
             
             // Keys
             [self.keys addObject:key];
-            [self.keys sortUsingSelector:@selector(compare:)];
         }
         
         return object;
@@ -95,6 +94,18 @@
     NSString *key = safetyObjectAtIndex(self.allKeys, indexPath.section);
     
     return safetyObjectAtIndex(self[key], indexPath.row);
+}
+
+- (void) sort {
+    // Sort keys
+    [self.keys sortUsingSelector:@selector(compare:)];
+
+    // Sory instructions
+    for (NSString *key in self) {
+        [self[key] sortUsingComparator:^NSComparisonResult(AInstruction *obj1, AInstruction *obj2) {
+            return [obj1.mnemonic compare:obj2.mnemonic];
+        }];
+    }
 }
 
 #pragma mark - Lazy

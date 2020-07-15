@@ -141,11 +141,7 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
     }
     
     // Sort
-    for (NSString *key in self._instructions) {
-        [self._instructions[key] sortUsingComparator:^NSComparisonResult(AInstruction *obj1, AInstruction *obj2) {
-            return [obj1.mnemonic compare:obj2.mnemonic];
-        }];
-    }
+    [self._instructions sort];
 }
 
 @end
