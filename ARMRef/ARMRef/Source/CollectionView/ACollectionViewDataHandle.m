@@ -25,6 +25,7 @@
 #import "ACollectionViewDataHandle.h"
 #import "AInstructionLoader.h"
 #import "ACollectionViewCell.h"
+#import "ACollectionReusableHeaderView.h"
 
 @interface ACollectionViewDataHandle ()
 
@@ -40,18 +41,25 @@
     return cell;
 }
 
-- (NSInteger) collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return self.instructions.count;
+}
+
+- (NSInteger) collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSString *key = safetyObjectAtIndex(self.instructions.allKeys, section);
+    
+    return [self.instructions[key] count];
 }
 
 #pragma mark - UICollectionViewDelegate
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(ACollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    cell.instruction = safetyObjectAtIndex(self.instructions, indexPath.row);
+- (void) collectionView:(UICollectionView *)collectionView willDisplayCell:(ACollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    cell.instruction = [self.instructions instructionAtIndexPath:indexPath];
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.handleTouch collectioinViewHandle:self didTouchInstruction:self.instructions[indexPath.row]];
+    AInstruction *instruction = [self.instructions instructionAtIndexPath:indexPath];
+    [self.handleTouch collectioinViewHandle:self didTouchInstruction:instruction];
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,22 +67,40 @@
     cell.contentView.backgroundColor = [UIColor colorFromHex:0xadb1b5];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void) collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.contentView.backgroundColor = UIColor.whiteColor;
+}
+
+- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    if (kind == UICollectionElementKindSectionHeader) {
+        ACollectionReusableHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
+                                                                                       withReuseIdentifier:ACollectionReusableHeaderView.identifier
+                                                                                              forIndexPath:indexPath];
+        headerView.label.text = [safetyObjectAtIndex(self.instructions.allKeys, indexPath.section) uppercaseString];
+
+        return headerView;
+    }
+    
+    return nil;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat maxSize = [ACollectionViewCell heightForInstruction:safetyObjectAtIndex(self.instructions, indexPath.row)
+    AInstruction *instruction = [self.instructions instructionAtIndexPath:indexPath];
+    CGFloat maxSize = [ACollectionViewCell heightForInstruction:instruction
                                                       withWidth:collectionView.bounds.size.width - 40.0f];
 
     return CGSizeMake(collectionView.bounds.size.width - 20.0f, maxSize);
 }
 
+- (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeMake(collectionView.bounds.size.width, 40.0f);
+}
+
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f);
+    return UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f);
 }
 
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

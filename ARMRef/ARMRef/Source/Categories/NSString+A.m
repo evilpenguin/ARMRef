@@ -1,5 +1,6 @@
 //
-//  Defines.h
+//  NSString+A.m
+//  ARMRef
 //
 //  Copyright (c) 2020 ARMRef (https://github.com/evilpenguin/ARMRef)
 //
@@ -21,39 +22,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#ifndef Defines_h
-#define Defines_h
+#import "NSString+A.h"
 
-// Weakify and Strongify
-#define weakify(var) \
-    __weak typeof(var) KPWeak_##var = var
+@implementation NSString (A)
 
-#define strongify(var) \
-    _Pragma("clang diagnostic push") \
-    _Pragma("clang diagnostic ignored \"-Wshadow\"") \
-    __strong typeof(var) var = KPWeak_##var \
-    _Pragma("clang diagnostic pop")
+#pragma mark - Public methods
 
-// Dispatch main
-#define dispatch_async_main(block) \
-    if (block) dispatch_async(dispatch_get_main_queue(), block)
+- (NSString *) firstCharacter {
+    if (self.length) {
+        return [self substringToIndex:1].lowercaseString;
+    }
+    
+    return nil;
+}
 
-#define dispatch_async_global(block) \
-    if (block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
-
-// Block
-#define BlockSafetyCall(block) \
-    if (block) block()
-
-#define BlockSafetyCallWithArgs(block, ...) \
-    if (block) block(__VA_ARGS__)
-
-// Array
-#define safetyObjectAtIndex(array, index) \
-    ([array count] > index ? array[index] : nil)
-
-#define safetyPointerObjectAtIndex(array, index) \
-    ([array count] > index ? [array pointerAtIndex:index] : nil)
-
-
-#endif /* Defines_h */
+@end

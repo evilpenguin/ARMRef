@@ -29,7 +29,7 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
 
 @interface AInstructionLoader ()
 @property (nonatomic, strong) NSString *architecture;
-@property (nonatomic, strong) NSMutableArray<AInstruction *> *allInstructions;
+@property (nonatomic, strong) AInstructions<NSString *, NSMutableArray *> *_instructions;
 
 @end
 
@@ -97,42 +97,55 @@ NSString *const AInstructionLoaderFinishedNotificaton = @"AInstructionLoaderFini
 
 #pragma mark - Getter
 
-- (NSArray<AInstruction *> *) instructions {
+- (AInstructions<NSString *, NSMutableArray *> *) instructions {
     if (self.filerString.length) {
-        NSIndexSet *indices = [self.allInstructions indexesOfObjectsPassingTest:^BOOL(AInstruction * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *firstChar = self.filerString.firstCharacter;
+        NSArray *instructions = self._instructions[firstChar];
+        
+        weakify(self);
+        NSIndexSet *indices = [instructions indexesOfObjectsPassingTest:^BOOL(AInstruction * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            strongify(self);
             return [obj.mnemonic rangeOfString:self.filerString options:NSCaseInsensitiveSearch].location != NSNotFound;
         }];
         
-        return [self.allInstructions objectsAtIndexes:indices];
+        return [AInstructions dictionaryWithDictionary:@{firstChar: [instructions objectsAtIndexes:indices]}];
     }
     
-    return self.allInstructions;
+    return self._instructions;
 }
 
 #pragma mark - Lazy
 
-- (NSMutableArray<AInstruction *> *) allInstructions {
-    if (!_allInstructions) _allInstructions = [NSMutableArray array];
+- (AInstructions *) _instructions {
+    if (!__instructions) {
+        __instructions = [[AInstructions alloc] init];
+    }
     
-    return _allInstructions;
+    return __instructions;
 }
 
 #pragma mark - Private
 
 - (void) _parsedArrayToInstructiions:(NSArray<NSDictionary *> *)array {
     // Clear
-    [self.allInstructions removeAllObjects];
+    [self._instructions removeAllObjects];
     
     // Create
     for (NSDictionary *instructionDict in array) {
         AInstruction *instruction = [[AInstruction alloc] initWithDictionary:instructionDict];
-        [self.allInstructions addObject:instruction];
+        
+        NSString *section = instruction.mnemonic.firstCharacter;
+        if (section) {
+            [self._instructions[section] addObject:instruction];
+        }
     }
     
     // Sort
-    [self.allInstructions sortUsingComparator:^NSComparisonResult(AInstruction *obj1, AInstruction *obj2) {
-        return [obj1.mnemonic compare:obj2.mnemonic];
-    }];
+    for (NSString *key in self._instructions) {
+        [self._instructions[key] sortUsingComparator:^NSComparisonResult(AInstruction *obj1, AInstruction *obj2) {
+            return [obj1.mnemonic compare:obj2.mnemonic];
+        }];
+    }
 }
 
 @end

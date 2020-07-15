@@ -10,6 +10,9 @@
 		A99EA5C924B29F0E007744F1 /* ARMv8.6a.json in Resources */ = {isa = PBXBuildFile; fileRef = A99EA5C724B29F0E007744F1 /* ARMv8.6a.json */; };
 		A99EA5CA24B29F0E007744F1 /* ARMv8.6a (32-bit).json in Resources */ = {isa = PBXBuildFile; fileRef = A99EA5C824B29F0E007744F1 /* ARMv8.6a (32-bit).json */; };
 		A99EA5CD24B2A51B007744F1 /* AArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A99EA5CC24B2A51B007744F1 /* AArchitectureViewController.m */; };
+		A99EA5D124BE70C0007744F1 /* ACollectionReusableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A99EA5D024BE70C0007744F1 /* ACollectionReusableHeaderView.m */; };
+		A99EA5D424BE7411007744F1 /* AInstructions.m in Sources */ = {isa = PBXBuildFile; fileRef = A99EA5D324BE7411007744F1 /* AInstructions.m */; };
+		A99EA5D724BE94F0007744F1 /* NSString+A.m in Sources */ = {isa = PBXBuildFile; fileRef = A99EA5D624BE94F0007744F1 /* NSString+A.m */; };
 		A9A6CE9224A9354F00C738BD /* AAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CE9124A9354F00C738BD /* AAppDelegate.m */; };
 		A9A6CE9824A9354F00C738BD /* AMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A6CE9724A9354F00C738BD /* AMainViewController.m */; };
 		A9A6CE9D24A9355000C738BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A6CE9C24A9355000C738BD /* Assets.xcassets */; };
@@ -31,6 +34,12 @@
 		A99EA5C824B29F0E007744F1 /* ARMv8.6a (32-bit).json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ARMv8.6a (32-bit).json"; sourceTree = "<group>"; };
 		A99EA5CB24B2A51B007744F1 /* AArchitectureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AArchitectureViewController.h; sourceTree = "<group>"; };
 		A99EA5CC24B2A51B007744F1 /* AArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AArchitectureViewController.m; sourceTree = "<group>"; };
+		A99EA5CF24BE70C0007744F1 /* ACollectionReusableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACollectionReusableHeaderView.h; sourceTree = "<group>"; };
+		A99EA5D024BE70C0007744F1 /* ACollectionReusableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACollectionReusableHeaderView.m; sourceTree = "<group>"; };
+		A99EA5D224BE7411007744F1 /* AInstructions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AInstructions.h; sourceTree = "<group>"; };
+		A99EA5D324BE7411007744F1 /* AInstructions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AInstructions.m; sourceTree = "<group>"; };
+		A99EA5D524BE94F0007744F1 /* NSString+A.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+A.h"; sourceTree = "<group>"; };
+		A99EA5D624BE94F0007744F1 /* NSString+A.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+A.m"; sourceTree = "<group>"; };
 		A9A6CE8D24A9354F00C738BD /* ARMRef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARMRef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A6CE9024A9354F00C738BD /* AAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AAppDelegate.h; sourceTree = "<group>"; };
 		A9A6CE9124A9354F00C738BD /* AAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AAppDelegate.m; sourceTree = "<group>"; };
@@ -158,6 +167,8 @@
 				A9A6CEAF24A9469300C738BD /* AInstruction.m */,
 				A9A6CEB124A946D900C738BD /* AInstructionLoader.h */,
 				A9A6CEB224A946D900C738BD /* AInstructionLoader.m */,
+				A99EA5D224BE7411007744F1 /* AInstructions.h */,
+				A99EA5D324BE7411007744F1 /* AInstructions.m */,
 			);
 			path = InstructionLoader;
 			sourceTree = "<group>";
@@ -165,6 +176,8 @@
 		A9A6CEB524A94F2D00C738BD /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				A99EA5CF24BE70C0007744F1 /* ACollectionReusableHeaderView.h */,
+				A99EA5D024BE70C0007744F1 /* ACollectionReusableHeaderView.m */,
 				A9A6CEB624A94F4500C738BD /* ACollectionView.h */,
 				A9A6CEB724A94F4500C738BD /* ACollectionView.m */,
 				A9A6CEBC24A950DA00C738BD /* ACollectionViewCell.h */,
@@ -199,6 +212,8 @@
 			children = (
 				A9A6CED824AFA18100C738BD /* UIColor+A.h */,
 				A9A6CED924AFA18100C738BD /* UIColor+A.m */,
+				A99EA5D524BE94F0007744F1 /* NSString+A.h */,
+				A99EA5D624BE94F0007744F1 /* NSString+A.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -285,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9A6CEDA24AFA18100C738BD /* UIColor+A.m in Sources */,
+				A99EA5D424BE7411007744F1 /* AInstructions.m in Sources */,
 				A9A6CEBE24A950DA00C738BD /* ACollectionViewCell.m in Sources */,
 				A9A6CEB024A9469300C738BD /* AInstruction.m in Sources */,
 				A9A6CEE024AFD7D300C738BD /* ANavigationController.m in Sources */,
@@ -292,7 +308,9 @@
 				A99EA5CD24B2A51B007744F1 /* AArchitectureViewController.m in Sources */,
 				A9A6CEB824A94F4500C738BD /* ACollectionView.m in Sources */,
 				A9A6CE9224A9354F00C738BD /* AAppDelegate.m in Sources */,
+				A99EA5D124BE70C0007744F1 /* ACollectionReusableHeaderView.m in Sources */,
 				A9A6CEBB24A94FF000C738BD /* ACollectionViewDataHandle.m in Sources */,
+				A99EA5D724BE94F0007744F1 /* NSString+A.m in Sources */,
 				A9A6CED624AF9CD900C738BD /* AInstructionViewController.m in Sources */,
 				A9A6CEDD24AFA7A200C738BD /* AInstructionView.m in Sources */,
 				A9A6CEA324A9355000C738BD /* main.m in Sources */,

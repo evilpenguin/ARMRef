@@ -86,7 +86,7 @@
     
     // Collection view
     CGRect collectionViewFrame = CGRectMake(self.view.safeAreaInsets.left,
-                                            CGRectGetMaxY(self.searchBar.frame) + 5.0f,
+                                            CGRectGetMaxY(self.searchBar.frame),
                                             self.view.bounds.size.width - leftRightInset,
                                             self.view.bounds.size.height - (CGRectGetMaxY(self.searchBar.frame) + 5.0f));
 

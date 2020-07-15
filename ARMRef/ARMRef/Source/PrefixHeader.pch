@@ -28,6 +28,7 @@
 // Helpers
 #import "Defines.h"
 #import "UIColor+A.h"
+#import "NSString+A.h"
 #import "AInstructionLoader.h"
 
 #endif /* PrefixHeader_pch */

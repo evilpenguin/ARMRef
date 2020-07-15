@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ACollectionViewDelegatesTouchHandle;
 @interface ACollectionViewDataHandle : NSObject <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, weak) id<ACollectionViewDelegatesTouchHandle> handleTouch;
-@property (nonatomic, strong, nullable) NSArray<AInstruction *> *instructions;
+@property (nonatomic, strong, nullable) AInstructions *instructions;
 
 @end
 

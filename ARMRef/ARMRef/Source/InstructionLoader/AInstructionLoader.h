@@ -24,6 +24,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AInstruction.h"
+#import "AInstructions.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,7 +35,7 @@ FOUNDATION_EXTERN NSString *const AInstructionLoaderFinishedNotificaton;
 @property (nonatomic, strong, nullable) NSString *filerString;
 
 - (void) loadArchitecture:(NSString *)architecture;
-- (NSArray<AInstruction *> *) instructions;
+- (AInstructions<NSString *, NSMutableArray *> *) instructions;
 + (NSArray<NSString *> *) supportedArchitecture;
 
 @end

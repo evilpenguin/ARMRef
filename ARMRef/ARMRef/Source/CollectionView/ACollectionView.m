@@ -24,6 +24,7 @@
 
 #import "ACollectionView.h"
 #import "ACollectionViewCell.h"
+#import "ACollectionReusableHeaderView.h"
 
 @implementation ACollectionView
 
@@ -32,12 +33,12 @@
 - (instancetype) init {
     if (self = [super initWithFrame:CGRectZero collectionViewLayout:ACollectionView._layout]) {
         self.backgroundColor                            = [UIColor colorFromHex:0x333e48];
-        self.contentInset                               = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
-        self.scrollIndicatorInsets                      = self.contentInset;
+        self.scrollIndicatorInsets                      = UIEdgeInsetsMake(self.contentInset.top + 40.0f, self.contentInset.left, self.contentInset.bottom, self.contentInset.right);
         self.alwaysBounceVertical                       = YES;
         self.translatesAutoresizingMaskIntoConstraints  = NO;
         
         [self registerClass:ACollectionViewCell.class forCellWithReuseIdentifier:ACollectionViewCell.identifier];
+        [self registerClass:ACollectionReusableHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ACollectionReusableHeaderView.identifier];
         
         [NSNotificationCenter.defaultCenter addObserver:self
                                                selector:@selector(_keyboardWillChangeFrameNotification:)
@@ -52,9 +53,9 @@
 
 + (UICollectionViewFlowLayout *) _layout {
     UICollectionViewFlowLayout *layout = UICollectionViewFlowLayout.new;
-    layout.sectionInset = UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.sectionInsetReference = UICollectionViewFlowLayoutSectionInsetFromContentInset;
+    layout.sectionHeadersPinToVisibleBounds = YES;
     
     return layout;
 }
@@ -63,8 +64,8 @@
     CGRect endKeyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
     CGFloat bottomInset = (endKeyboardFrame.origin.y > self.bounds.size.height ? 10.0f : endKeyboardFrame.size.height + 10.0f);
-    self.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, bottomInset, 0.0f);
-    self.scrollIndicatorInsets = self.contentInset;
+    self.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, bottomInset, 0.0f);
+    self.scrollIndicatorInsets = UIEdgeInsetsMake(self.contentInset.top + 40.0f, self.contentInset.left, self.contentInset.bottom, self.contentInset.right);
 }
 
 @end

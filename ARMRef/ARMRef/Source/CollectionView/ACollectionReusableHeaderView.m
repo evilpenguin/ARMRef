@@ -1,5 +1,6 @@
 //
-//  Defines.h
+//  ACollectionReusableHeaderView.m
+//  ARMRef
 //
 //  Copyright (c) 2020 ARMRef (https://github.com/evilpenguin/ARMRef)
 //
@@ -21,39 +22,52 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#ifndef Defines_h
-#define Defines_h
+#import "ACollectionReusableHeaderView.h"
 
-// Weakify and Strongify
-#define weakify(var) \
-    __weak typeof(var) KPWeak_##var = var
+@interface ACollectionReusableHeaderView ()
+@property (nonatomic, strong) UILabel *label;
 
-#define strongify(var) \
-    _Pragma("clang diagnostic push") \
-    _Pragma("clang diagnostic ignored \"-Wshadow\"") \
-    __strong typeof(var) var = KPWeak_##var \
-    _Pragma("clang diagnostic pop")
+@end
 
-// Dispatch main
-#define dispatch_async_main(block) \
-    if (block) dispatch_async(dispatch_get_main_queue(), block)
+@implementation ACollectionReusableHeaderView
 
-#define dispatch_async_global(block) \
-    if (block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
+#pragma mark - ACollectionReusableHeaderView
 
-// Block
-#define BlockSafetyCall(block) \
-    if (block) block()
+- (instancetype) initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor colorFromHex:0x5b646c];
+        
+        [self addSubview:self.label];
+    }
+    
+    return self;
+}
 
-#define BlockSafetyCallWithArgs(block, ...) \
-    if (block) block(__VA_ARGS__)
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    
+    // Label
+    self.label.frame = CGRectMake(10.0f, 0.0f, self.bounds.size.width - 20.0f, self.bounds.size.height);
+}
 
-// Array
-#define safetyObjectAtIndex(array, index) \
-    ([array count] > index ? array[index] : nil)
+#pragma mark - Public class methods
 
-#define safetyPointerObjectAtIndex(array, index) \
-    ([array count] > index ? [array pointerAtIndex:index] : nil)
++ (NSString *) identifier {
+    return @"ACollectionReusableHeaderView";
+}
 
+#pragma mark - Lazy props
 
-#endif /* Defines_h */
+- (UILabel *) label {
+    if (!_label) {
+        _label = [[UILabel alloc] init];
+        _label.backgroundColor = UIColor.clearColor;
+        _label.textColor = UIColor.whiteColor;
+        _label.font = [UIFont systemFontOfSize:24.0f weight:UIFontWeightBold];
+        _label.text = @"A";
+    }
+    
+    return _label;
+}
+
+@end
